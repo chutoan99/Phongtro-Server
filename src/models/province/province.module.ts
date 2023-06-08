@@ -4,6 +4,6 @@ import { ProvinceService } from './province.service';
 
 @Module({
   controllers: [ProvinceController],
-  providers: [ProvinceService]
+  providers: [ProvinceService],
 })
 export class ProvinceModule {}
