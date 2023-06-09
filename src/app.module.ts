@@ -1,45 +1,21 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
-import { Repository } from 'typeorm';
-//entity
-import { UserEntity } from './models/user/user.entity';
-// controller
-import { AttributeController } from './models/attribute/attribute.controller';
-import { ProvinceController } from './models/province/province.controller';
-import { OverviewController } from './models/overview/overview.controller';
-import { CategoryController } from './models/category/category.controller';
-import { ImageController } from './models/image/image.controller';
-import { LabelController } from './models/label/label.controller';
-import { UserController } from './models/user/user.controller';
-import { AreaController } from './models/area/area.controller';
-import { IndexController } from './models/index/index.controller';
-import { PriceController } from './models/price/price.controller';
-import { AppController } from './app.controller';
-// service
-import { ProvinceService } from './models/province/province.service';
-import { AttributeService } from './models/attribute/attribute.service';
-import { CategoryService } from './models/category/category.service';
-import { OverviewService } from './models/overview/overview.service';
-import { PriceService } from './models/price/price.service';
-import { IndexService } from './models/index/index.service';
-import { AreaService } from './models/area/area.service';
-import { ImageService } from './models/image/image.service';
-import { LabelService } from './models/label/label.service';
-import { UserService } from './models/user/user.service';
+//app
 import { AppService } from './app.service';
-// attribute
-import { AttributeModule } from './models/attribute/attribute.module';
-import { CategoryModule } from './models/category/category.module';
-import { ProvinceModule } from './models/province/province.module';
-import { OverviewModule } from './models/overview/overview.module';
-import { ImageModule } from './models/image/image.module';
-import { IndexModule } from './models/index/index.module';
-import { LabelModule } from './models/label/label.module';
-import { PriceModule } from './models/price/price.module';
-import { UserModule } from './models/user/user.module';
-import { AreaModule } from './models/area/area.module';
-
+import { AppController } from './app.controller';
+//entity
+import { AreaEntity } from './modules/area/area.entity';
+import { AttributeEntity } from './modules/attribute/attribute.entity';
+import { InsertModule } from './modules/insert/insert.module';
+import { PostEntity } from './modules/post/post.entity';
+import { CategoryEntity } from './modules/category/category.entity';
+import { PriceEntity } from './modules/price/price.entity';
+import { ProvinceEntity } from './modules/province/province.entity';
+import { LabelEntity } from './modules/label/label.entity';
+import { ImageEntity } from './modules/image/image.entity';
+import { OverviewEntity } from './modules/overview/overview.entity';
+import { UserEntity } from './modules/user/user.entity';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -49,46 +25,38 @@ import { AreaModule } from './models/area/area.module';
       username: 'postgres',
       password: 'Z8kXWH5kOvUQW4z1nZGw',
       database: 'railway',
-      entities: [UserEntity],
+      entities: [
+        AreaEntity,
+        CategoryEntity,
+        PriceEntity,
+        ProvinceEntity,
+        ProvinceEntity,
+        LabelEntity,
+        ImageEntity,
+        PostEntity,
+        AttributeEntity,
+        OverviewEntity,
+        UserEntity,
+      ],
       synchronize: true,
     }),
-    UserModule,
-    AreaModule,
-    AttributeModule,
-    CategoryModule,
-    ImageModule,
-    IndexModule,
-    LabelModule,
-    PriceModule,
-    ProvinceModule,
-    OverviewModule,
+    TypeOrmModule.forFeature([
+      AreaEntity,
+      CategoryEntity,
+      PriceEntity,
+      ProvinceEntity,
+      ProvinceEntity,
+      LabelEntity,
+      ImageEntity,
+      PostEntity,
+      AttributeEntity,
+      OverviewEntity,
+      UserEntity,
+    ]),
+    InsertModule,
   ],
-  controllers: [
-    AppController,
-    AreaController,
-    AttributeController,
-    ImageController,
-    LabelController,
-    CategoryController,
-    IndexController,
-    OverviewController,
-    ProvinceController,
-    PriceController,
-    // UserController,
-  ],
-  providers: [
-    AreaService,
-    AttributeService,
-    CategoryService,
-    ImageService,
-    IndexService,
-    LabelService,
-    OverviewService,
-    PriceService,
-    ProvinceService,
-    // UserService,
-    AppService,
-  ],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {
   constructor(private dataSource: DataSource) {}
