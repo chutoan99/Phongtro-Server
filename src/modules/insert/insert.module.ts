@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { InsertController } from './insert.controller';
 import { InsertService } from './insert.service';
-import { AreaEntity } from '../area/area.entity';
 
 import { CategoryEntity } from '../category/category.entity';
 import { PriceEntity } from '../price/price.entity';
@@ -13,6 +12,7 @@ import { PostEntity } from '../post/post.entity';
 import { AttributeEntity } from '../attribute/attribute.entity';
 import { OverviewEntity } from '../overview/overview.entity';
 import { UserEntity } from '../user/user.entity';
+import { AreaEntity } from '../area/model/area.entity';
 
 @Module({
   imports: [

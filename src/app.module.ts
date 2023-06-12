@@ -1,11 +1,12 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
+import { GraphQLModule } from '@nestjs/graphql';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 //app
 import { AppService } from './app.service';
 import { AppController } from './app.controller';
 //entity
-import { AreaEntity } from './modules/area/area.entity';
 import { AttributeEntity } from './modules/attribute/attribute.entity';
 import { InsertModule } from './modules/insert/insert.module';
 import { PostEntity } from './modules/post/post.entity';
@@ -16,14 +17,30 @@ import { LabelEntity } from './modules/label/label.entity';
 import { ImageEntity } from './modules/image/image.entity';
 import { OverviewEntity } from './modules/overview/overview.entity';
 import { UserEntity } from './modules/user/user.entity';
+import { join } from 'path';
+import { AreaModule } from './modules/area/area.module';
+import { AreaEntity } from './modules/area/model/area.entity';
+
 @Module({
   imports: [
+    AreaModule,
+    InsertModule,
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
+      autoSchemaFile: true,
+      playground: true,
+      typePaths: ['./**/*.graphql'],
+      definitions: {
+        path: join(process.cwd(), './graphql.ts'),
+      },
+    }),
+
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'containers-us-west-143.railway.app',
-      port: 7263,
+      host: 'containers-us-west-176.railway.app',
+      port: 7039,
       username: 'postgres',
-      password: 'Z8kXWH5kOvUQW4z1nZGw',
+      password: 'rZPrPeE2Rv4SyzPaxzMG',
       database: 'railway',
       entities: [
         AreaEntity,
@@ -40,6 +57,7 @@ import { UserEntity } from './modules/user/user.entity';
       ],
       synchronize: true,
     }),
+
     TypeOrmModule.forFeature([
       AreaEntity,
       CategoryEntity,
@@ -53,7 +71,6 @@ import { UserEntity } from './modules/user/user.entity';
       OverviewEntity,
       UserEntity,
     ]),
-    InsertModule,
   ],
   controllers: [AppController],
   providers: [AppService],

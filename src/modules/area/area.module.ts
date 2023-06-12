@@ -1,9 +1,13 @@
 import { Module } from '@nestjs/common';
-import { AreaController } from './area.controller';
 import { AreaService } from './area.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
+
+import { AreaResolver } from './resolver/area.resolver';
+import { AreaEntity } from './model/area.entity';
 
 @Module({
-  controllers: [AreaController],
-  providers: [AreaService],
+  imports: [TypeOrmModule.forFeature([AreaEntity])],
+  controllers: [],
+  providers: [AreaService, AreaResolver],
 })
 export class AreaModule {}
