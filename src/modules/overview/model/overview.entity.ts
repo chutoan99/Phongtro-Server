@@ -1,36 +1,40 @@
+import { PostEntity } from 'src/modules/post/model/post.entity';
 import {
   Entity,
   Column,
-  PrimaryGeneratedColumn,
-  OneToMany,
+  OneToOne,
   CreateDateColumn,
   UpdateDateColumn,
   PrimaryColumn,
 } from 'typeorm';
-import { PostEntity } from '../post/post.entity';
+
 import { v4 as uuidv4 } from 'uuid';
-@Entity('Users')
-export class UserEntity {
+
+@Entity('Overviews')
+export class OverviewEntity {
   @PrimaryColumn('uuid', { default: uuidv4() })
   id: number;
 
   @Column()
-  name: string;
+  code: string;
 
   @Column()
-  password: string;
+  area: string;
 
   @Column()
-  phone: string;
+  type: string;
 
   @Column()
-  zalo: string;
-
-  @Column({ nullable: true })
-  file: string;
+  target: string;
 
   @Column()
-  avatar: string;
+  created: string;
+
+  @Column()
+  expired: string;
+
+  @Column()
+  bonus: string;
 
   @CreateDateColumn()
   createdAt: Date;
@@ -38,6 +42,6 @@ export class UserEntity {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  // @OneToMany(() => PostEntity, (post) => post.user)
-  // posts: PostEntity[];
+  @OneToOne(() => PostEntity, (post) => post.overviews)
+  post: PostEntity;
 }

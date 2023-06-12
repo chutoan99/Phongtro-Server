@@ -1,3 +1,4 @@
+import { PostEntity } from 'src/modules/post/model/post.entity';
 import {
   Entity,
   Column,
@@ -6,7 +7,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { PostEntity } from '../post/post.entity';
+
 import { v4 as uuidv4 } from 'uuid';
 
 @Entity('Attributes')

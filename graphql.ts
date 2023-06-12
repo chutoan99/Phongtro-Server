@@ -23,8 +23,43 @@ export interface AreaResponse {
     response: Area[];
 }
 
+export interface Category {
+    id: string;
+    code: string;
+    value: string;
+    header: string;
+    subHeader: string;
+    path: string;
+    createdAt: DateTime;
+    updatedAt: DateTime;
+}
+
+export interface CategoryResponse {
+    err: number;
+    msg: string;
+    response: Category[];
+}
+
+export interface Attribute {
+    id: string;
+    price: string;
+    acreage: string;
+    published: string;
+    hashtag: string;
+    createdAt: DateTime;
+    updatedAt: DateTime;
+}
+
+export interface AttributeResponse {
+    err: number;
+    msg: string;
+    response: Attribute[];
+}
+
 export interface IQuery {
     area(): AreaResponse | Promise<AreaResponse>;
+    attribute(): AttributeResponse | Promise<AttributeResponse>;
+    category(): CategoryResponse | Promise<CategoryResponse>;
 }
 
 export type DateTime = any;

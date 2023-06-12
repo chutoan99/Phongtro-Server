@@ -1,3 +1,6 @@
+import { AttributeEntity } from 'src/modules/attribute/model/attribute.entity';
+import { ImageEntity } from 'src/modules/image/model/image.entity';
+import { OverviewEntity } from 'src/modules/overview/model/overview.entity';
 import {
   Entity,
   Column,
@@ -7,10 +10,7 @@ import {
   UpdateDateColumn,
   PrimaryColumn,
 } from 'typeorm';
-import { ImageEntity } from '../image/image.entity';
-import { AttributeEntity } from '../attribute/attribute.entity';
-import { OverviewEntity } from '../overview/overview.entity';
-import { UserEntity } from '../user/user.entity';
+
 import { v4 as uuidv4 } from 'uuid';
 
 @Entity('Posts')

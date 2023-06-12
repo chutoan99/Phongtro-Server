@@ -1,37 +1,48 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
+import { join } from 'path';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 //app
-import { AppService } from './app.service';
-import { AppController } from './app.controller';
-//entity
-import { AttributeEntity } from './modules/attribute/attribute.entity';
-import { InsertModule } from './modules/insert/insert.module';
-import { PostEntity } from './modules/post/post.entity';
-import { CategoryEntity } from './modules/category/category.entity';
-import { PriceEntity } from './modules/price/price.entity';
-import { ProvinceEntity } from './modules/province/province.entity';
-import { LabelEntity } from './modules/label/label.entity';
-import { ImageEntity } from './modules/image/image.entity';
-import { OverviewEntity } from './modules/overview/overview.entity';
-import { UserEntity } from './modules/user/user.entity';
-import { join } from 'path';
-import { AreaModule } from './modules/area/area.module';
-import { AreaEntity } from './modules/area/model/area.entity';
 
+//entity
+import { ProvinceEntity } from './modules/province/model/province.entity';
+import { AttributeEntity } from './modules/attribute/model/attribute.entity';
+import { CategoryEntity } from './modules/category/model/category.entity';
+import { OverviewEntity } from './modules/overview/model/overview.entity';
+import { AreaEntity } from './modules/area/model/area.entity';
+import { ImageEntity } from './modules/image/model/image.entity';
+import { LabelEntity } from './modules/label/model/label.entity';
+import { PostEntity } from './modules/post/model/post.entity';
+import { PriceEntity } from './modules/price/model/price.entity';
+import { UserEntity } from './modules/user/model/user.entity';
+
+//module
+import { InsertModule } from './modules/insert/insert.module';
+import { AreaModule } from './modules/area/area.module';
+import { CategoryModule } from './modules/category/category.module';
+import { AttributeModule } from './modules/attribute/attribute.module';
+import { ImageModule } from './modules/image/image.module';
+import { ProvinceModule } from './modules/province/province.module';
+import { PriceModule } from './modules/price/price.module';
+import { UserModule } from './modules/user/user.module';
 @Module({
   imports: [
     AreaModule,
+    AttributeModule,
+    CategoryModule,
+    ImageModule,
+    ProvinceModule,
+    PriceModule,
+    UserModule,
     InsertModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: true,
       playground: true,
-      typePaths: ['./**/*.graphql'],
       definitions: {
-        path: join(process.cwd(), './graphql.ts'),
+        path: join(process.cwd(), '../graphql.ts'),
       },
     }),
 
@@ -46,7 +57,6 @@ import { AreaEntity } from './modules/area/model/area.entity';
         AreaEntity,
         CategoryEntity,
         PriceEntity,
-        ProvinceEntity,
         ProvinceEntity,
         LabelEntity,
         ImageEntity,
@@ -72,8 +82,8 @@ import { AreaEntity } from './modules/area/model/area.entity';
       UserEntity,
     ]),
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {
   constructor(private dataSource: DataSource) {}

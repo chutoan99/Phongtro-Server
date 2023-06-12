@@ -1,26 +1,36 @@
 import {
   Entity,
   Column,
-  OneToOne,
+  PrimaryGeneratedColumn,
+  OneToMany,
   CreateDateColumn,
   UpdateDateColumn,
   PrimaryColumn,
 } from 'typeorm';
-import { PostEntity } from '../post/post.entity';
+
 import { v4 as uuidv4 } from 'uuid';
-@Entity('Images')
-export class ImageEntity {
+@Entity('Users')
+export class UserEntity {
   @PrimaryColumn('uuid', { default: uuidv4() })
   id: number;
 
-  @Column('text')
-  image: string;
-
-  @Column({ nullable: true })
-  postImg: string;
+  @Column()
+  name: string;
 
   @Column()
-  total: number;
+  password: string;
+
+  @Column()
+  phone: string;
+
+  @Column()
+  zalo: string;
+
+  @Column({ nullable: true })
+  file: string;
+
+  @Column()
+  avatar: string;
 
   @CreateDateColumn()
   createdAt: Date;
@@ -28,6 +38,6 @@ export class ImageEntity {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToOne(() => PostEntity, (post) => post.images)
-  post: PostEntity;
+  // @OneToMany(() => PostEntity, (post) => post.user)
+  // posts: PostEntity[];
 }

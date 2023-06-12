@@ -7,17 +7,18 @@ import * as bcrypt from 'bcryptjs';
 import { dataPrice, dataArea, categories, dataPost } from '../../utils/data';
 import { getNumberFromString, getNumberFromStringV2 } from '../../utils/comom';
 
-import { ProvinceEntity } from '../province/province.entity';
-import { LabelEntity } from '../label/label.entity';
-import { CategoryEntity } from '../category/category.entity';
-import { PostEntity } from '../post/post.entity';
-import { AttributeEntity } from '../attribute/attribute.entity';
-import { ImageEntity } from '../image/image.entity';
-import { OverviewEntity } from '../overview/overview.entity';
-import { UserEntity } from '../user/user.entity';
 import generateCode from 'src/utils/generateCode';
-import { PriceEntity } from '../price/price.entity';
+
 import { AreaEntity } from '../area/model/area.entity';
+import { AttributeEntity } from '../attribute/model/attribute.entity';
+import { CategoryEntity } from '../category/model/category.entity';
+import { ImageEntity } from '../image/model/image.entity';
+import { LabelEntity } from '../label/model/label.entity';
+import { OverviewEntity } from '../overview/model/overview.entity';
+import { PostEntity } from '../post/model/post.entity';
+import { PriceEntity } from '../price/model/price.entity';
+import { ProvinceEntity } from '../province/model/province.entity';
+import { UserEntity } from '../user/model/user.entity';
 interface ProvinceCode {
   code: string;
   value: string;
