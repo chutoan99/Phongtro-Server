@@ -1,18 +1,18 @@
+import { PostEntity } from 'src/modules/post/model/post.entity';
 import {
   Entity,
   Column,
-  PrimaryGeneratedColumn,
-  OneToMany,
   CreateDateColumn,
   UpdateDateColumn,
   PrimaryColumn,
+  OneToMany,
 } from 'typeorm';
-
 import { v4 as uuidv4 } from 'uuid';
+
 @Entity('Users')
 export class UserEntity {
   @PrimaryColumn('uuid', { default: uuidv4() })
-  id: number;
+  id: string;
 
   @Column()
   name: string;
@@ -38,6 +38,6 @@ export class UserEntity {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  // @OneToMany(() => PostEntity, (post) => post.user)
+  // @OneToMany(() => PostEntity, (post: PostEntity) => post.user)
   // posts: PostEntity[];
 }

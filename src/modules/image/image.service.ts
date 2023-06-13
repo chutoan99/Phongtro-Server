@@ -13,4 +13,8 @@ export class ImageService {
     const response = await this.imageRepository.find();
     return response;
   }
+  async findById(id: any) {
+    const response = await this.imageRepository.findOne({ where: { id: id } });
+    return response;
+  }
 }

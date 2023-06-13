@@ -33,6 +33,6 @@ export class AttributeEntity {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToOne(() => PostEntity, (post) => post.attributes)
+  @OneToOne(() => PostEntity, (post: PostEntity) => post.attributes)
   post: PostEntity;
 }

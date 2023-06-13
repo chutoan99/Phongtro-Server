@@ -12,7 +12,7 @@ import { v4 as uuidv4 } from 'uuid';
 @Entity('Images')
 export class ImageEntity {
   @PrimaryColumn('uuid', { default: uuidv4() })
-  id: number;
+  id: string;
 
   @Column('text')
   image: string;
@@ -29,6 +29,6 @@ export class ImageEntity {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToOne(() => PostEntity, (post) => post.images)
+  @OneToOne(() => PostEntity, (post: PostEntity) => post.images)
   post: PostEntity;
 }

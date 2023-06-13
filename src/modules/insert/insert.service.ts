@@ -91,7 +91,6 @@ export class InsertService {
           value: item?.value,
         })),
       );
-
       await Promise.all(
         dataPost.map(async (dataBody) => {
           const labelCodes: LabelCode[] = [];
@@ -141,7 +140,8 @@ export class InsertService {
               start: item?.header?.star,
               address: item?.header?.address,
               description: description,
-              userId: userId,
+              user: { id: userId }, // Assigning user relationship object
+              // userId: userId,
               labelCode: labelCode,
               provinceCode: provinceCode,
               categoryCode: dataBody.code,

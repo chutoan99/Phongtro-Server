@@ -13,7 +13,7 @@ import { v4 as uuidv4 } from 'uuid';
 @Entity('Overviews')
 export class OverviewEntity {
   @PrimaryColumn('uuid', { default: uuidv4() })
-  id: number;
+  id: string;
 
   @Column()
   code: string;
@@ -42,6 +42,6 @@ export class OverviewEntity {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToOne(() => PostEntity, (post) => post.overviews)
+  @OneToOne(() => PostEntity, (post: PostEntity) => post.overviews)
   post: PostEntity;
 }

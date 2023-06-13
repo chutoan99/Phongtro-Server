@@ -1,28 +1,30 @@
 import { ObjectType, Field, Int, ID } from '@nestjs/graphql';
-import { Post } from 'src/modules/post/schema/post.schema';
 
 @ObjectType()
-export class User {
+export class Overview {
   @Field((type) => ID)
-  id: string;
+  id: number;
 
   @Field()
-  name: string;
+  code: string;
 
   @Field()
-  password: string;
+  area: string;
 
   @Field()
-  phone: string;
+  type: string;
 
   @Field()
-  zalo: string;
-
-  @Field(() => Post)
-  post: Post;
+  target: string;
 
   @Field()
-  avatar: string;
+  created: string;
+
+  @Field()
+  expired: string;
+
+  @Field()
+  bonus: string;
 
   @Field((type) => Date)
   createdAt: Date;

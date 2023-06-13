@@ -13,4 +13,11 @@ export class AttributeService {
     const response = await this.attributeRepository.find();
     return response;
   }
+
+  async findById(id: any) {
+    const response = await this.attributeRepository.findOne({
+      where: { id: id },
+    });
+    return response;
+  }
 }

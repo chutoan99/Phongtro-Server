@@ -27,6 +27,7 @@ import { ImageModule } from './modules/image/image.module';
 import { ProvinceModule } from './modules/province/province.module';
 import { PriceModule } from './modules/price/price.module';
 import { UserModule } from './modules/user/user.module';
+import { PostModule } from './modules/post/post.module';
 @Module({
   imports: [
     AreaModule,
@@ -36,13 +37,14 @@ import { UserModule } from './modules/user/user.module';
     ProvinceModule,
     PriceModule,
     UserModule,
+    PostModule,
     InsertModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: true,
       playground: true,
       definitions: {
-        path: join(process.cwd(), '../graphql.ts'),
+        path: join(process.cwd(), 'graphql.ts'),
       },
     }),
 

@@ -1,6 +1,7 @@
 import { AttributeEntity } from 'src/modules/attribute/model/attribute.entity';
 import { ImageEntity } from 'src/modules/image/model/image.entity';
 import { OverviewEntity } from 'src/modules/overview/model/overview.entity';
+import { UserEntity } from 'src/modules/user/model/user.entity';
 import {
   Entity,
   Column,
@@ -9,14 +10,15 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   PrimaryColumn,
+  OneToMany,
+  JoinColumn,
 } from 'typeorm';
-
 import { v4 as uuidv4 } from 'uuid';
 
 @Entity('Posts')
 export class PostEntity {
   @PrimaryColumn('uuid', { default: uuidv4() })
-  id: number;
+  id: string;
 
   @Column()
   title: string;
@@ -48,7 +50,7 @@ export class PostEntity {
   @Column('text')
   description: string;
 
-  @Column()
+  @Column('uuid', { default: uuidv4() })
   userId: string;
 
   @Column()
@@ -69,15 +71,18 @@ export class PostEntity {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToOne(() => ImageEntity, (image) => image.post)
+  // @ManyToOne(() => UserEntity, (user: UserEntity) => user.posts)
+  // user: UserEntity;
+
+  @OneToOne(() => ImageEntity, (image: ImageEntity) => image.post)
   images: ImageEntity;
 
-  @OneToOne(() => AttributeEntity, (attribute) => attribute.post)
+  @OneToOne(
+    () => AttributeEntity,
+    (attribute: AttributeEntity) => attribute.post,
+  )
   attributes: AttributeEntity;
 
-  @OneToOne(() => OverviewEntity, (overview) => overview.post)
+  @OneToOne(() => OverviewEntity, (overview: OverviewEntity) => overview.post)
   overviews: OverviewEntity;
-
-  // @ManyToOne(() => UserEntity, (user) => user.posts)
-  // user: UserEntity[];
 }
