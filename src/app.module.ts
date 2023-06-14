@@ -4,6 +4,7 @@ import { DataSource } from 'typeorm';
 import { join } from 'path';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { ConfigModule } from '@nestjs/config';
 //app
 
 //entity
@@ -28,6 +29,7 @@ import { ProvinceModule } from './modules/province/province.module';
 import { PriceModule } from './modules/price/price.module';
 import { UserModule } from './modules/user/user.module';
 import { PostModule } from './modules/post/post.module';
+import { AuthModule } from './modules/auth/auth.module';
 @Module({
   imports: [
     AreaModule,
@@ -39,6 +41,7 @@ import { PostModule } from './modules/post/post.module';
     UserModule,
     PostModule,
     InsertModule,
+    AuthModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: true,
@@ -83,6 +86,8 @@ import { PostModule } from './modules/post/post.module';
       OverviewEntity,
       UserEntity,
     ]),
+
+    ConfigModule.forRoot({ envFilePath: ['.env'] }),
   ],
   controllers: [],
   providers: [],

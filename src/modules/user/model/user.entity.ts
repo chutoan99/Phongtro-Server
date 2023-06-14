@@ -23,7 +23,7 @@ export class UserEntity {
   @Column()
   phone: string;
 
-  @Column()
+  @Column({ nullable: true })
   zalo: string;
 
   @Column({ nullable: true })

@@ -23,6 +23,17 @@ export interface InputPost {
     provinceCode: string;
 }
 
+export interface InputLogin {
+    phone: string;
+    password: string;
+}
+
+export interface InputRegister {
+    name: string;
+    phone: string;
+    password: string;
+}
+
 export interface Area {
     id: number;
     order: number;
@@ -157,10 +168,11 @@ export interface User {
     id: string;
     name: string;
     password: string;
-    phone: string;
-    zalo: string;
+    avatar?: Nullable<string>;
+    phone?: Nullable<string>;
+    zalo?: Nullable<string>;
+    file?: Nullable<string>;
     post: Post;
-    avatar: string;
     createdAt: DateTime;
     updatedAt: DateTime;
 }
@@ -192,6 +204,19 @@ export interface PostIdResponse {
     response: Post;
 }
 
+export interface LoginResponse {
+    err: number;
+    msg: string;
+    token?: Nullable<string>;
+    response: User;
+}
+
+export interface RegisterResponse {
+    err: number;
+    msg: string;
+    token?: Nullable<string>;
+}
+
 export interface IQuery {
     area(): AreaResponse | Promise<AreaResponse>;
     attribute(): AttributeResponse | Promise<AttributeResponse>;
@@ -203,6 +228,11 @@ export interface IQuery {
     userId(id: string): UserIdResponse | Promise<UserIdResponse>;
     post(input: InputPost): PostResponse | Promise<PostResponse>;
     postId(id: string): PostIdResponse | Promise<PostIdResponse>;
+}
+
+export interface IMutation {
+    login(input: InputLogin): LoginResponse | Promise<LoginResponse>;
+    register(input: InputRegister): RegisterResponse | Promise<RegisterResponse>;
 }
 
 export type DateTime = any;

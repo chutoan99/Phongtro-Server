@@ -12,17 +12,20 @@ export class User {
   @Field()
   password: string;
 
-  @Field()
+  @Field({ nullable: true })
+  avatar: string;
+
+  @Field({ nullable: true })
   phone: string;
 
-  @Field()
-  zalo: string;
+  @Field({ nullable: true })
+  zalo: string | null;
+
+  @Field({ nullable: true })
+  file: string | null;
 
   @Field(() => Post)
   post: Post;
-
-  @Field()
-  avatar: string;
 
   @Field((type) => Date)
   createdAt: Date;
