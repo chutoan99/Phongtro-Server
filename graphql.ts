@@ -23,6 +23,42 @@ export interface InputPost {
     provinceCode: string;
 }
 
+export interface InputNewPost {
+    pageNumber: number;
+    pageSize: number;
+}
+
+export interface InputUpdateProfile {
+    name: string;
+    avatar?: Nullable<string>;
+    phone?: Nullable<string>;
+    zalo?: Nullable<string>;
+    file?: Nullable<string>;
+}
+
+export interface InputCreatePost {
+    userid: string;
+    address: string;
+    areaCode: string;
+    areaNumber: number;
+    categoryCode: string;
+    description: string[];
+    images: string[];
+    label: string;
+    type: string;
+    priceCode: string;
+    priceNumber: number;
+    province: string;
+    target: string;
+    title: string;
+    start: number;
+}
+
+export interface InputUpdatePost {
+    address: string;
+    title: string;
+}
+
 export interface InputLogin {
     phone: string;
     password: string;
@@ -189,6 +225,18 @@ export interface UserIdResponse {
     response: User;
 }
 
+export interface ProfileResponse {
+    err: number;
+    msg: string;
+    response: User;
+}
+
+export interface UpdateProfileResponse {
+    err: number;
+    msg: string;
+    response: User;
+}
+
 export interface PostResponse {
     err: number;
     msg: string;
@@ -202,6 +250,56 @@ export interface PostIdResponse {
     err: number;
     msg: string;
     response: Post;
+}
+
+export interface CreatePostResponse {
+    err: number;
+    msg: string;
+}
+
+export interface UpdatePostResponse {
+    err: number;
+    msg: string;
+    response: Post;
+}
+
+export interface DeletePostResponse {
+    err: number;
+    msg: string;
+}
+
+export interface NewPost {
+    id?: Nullable<string>;
+    title?: Nullable<string>;
+    start?: Nullable<string>;
+    labelCode?: Nullable<string>;
+    address?: Nullable<string>;
+    attributesId?: Nullable<string>;
+    categoryCode?: Nullable<string>;
+    priceCode?: Nullable<string>;
+    areaCode?: Nullable<string>;
+    provinceCode?: Nullable<string>;
+    description?: Nullable<string>;
+    userId?: Nullable<string>;
+    overviewId?: Nullable<string>;
+    imagesId?: Nullable<string>;
+    priceNumber?: Nullable<number>;
+    areaNumber?: Nullable<number>;
+    createdAt?: Nullable<DateTime>;
+    updatedAt?: Nullable<DateTime>;
+    user: User;
+    listImage: Image;
+    attributes: Attribute;
+    overviews: Overview;
+}
+
+export interface NewPostResponse {
+    err: number;
+    msg: string;
+    response: NewPost[];
+    total: number;
+    pageNumber: number;
+    pageSize: number;
 }
 
 export interface LoginResponse {
@@ -226,11 +324,17 @@ export interface IQuery {
     price(): PriceResponse | Promise<PriceResponse>;
     user(): UserResponse | Promise<UserResponse>;
     userId(id: string): UserIdResponse | Promise<UserIdResponse>;
+    profile(id: string): ProfileResponse | Promise<ProfileResponse>;
     post(input: InputPost): PostResponse | Promise<PostResponse>;
+    newPost(input: InputNewPost): NewPostResponse | Promise<NewPostResponse>;
     postId(id: string): PostIdResponse | Promise<PostIdResponse>;
 }
 
 export interface IMutation {
+    updateProfile(input: InputUpdateProfile): UpdateProfileResponse | Promise<UpdateProfileResponse>;
+    createPost(input: InputCreatePost): CreatePostResponse | Promise<CreatePostResponse>;
+    updatePost(input: InputUpdatePost): UpdatePostResponse | Promise<UpdatePostResponse>;
+    deletePost(id: string): DeletePostResponse | Promise<DeletePostResponse>;
     login(input: InputLogin): LoginResponse | Promise<LoginResponse>;
     register(input: InputRegister): RegisterResponse | Promise<RegisterResponse>;
 }

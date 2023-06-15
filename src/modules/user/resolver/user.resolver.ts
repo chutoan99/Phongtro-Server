@@ -1,6 +1,7 @@
 import {
   Args,
   ID,
+  Mutation,
   Parent,
   Query,
   ResolveField,
@@ -12,6 +13,9 @@ import { UserIdResponse } from '../schema/userIdResponse.schema';
 import { PostService } from 'src/modules/post/post.service';
 import { Post } from 'src/modules/post/schema/post.schema';
 import { User } from '../schema/user.schema';
+import { ProfileResponse } from '../schema/profileResponse.schema';
+import { UpdateProfileResponse } from '../schema/updateProfileResponse.schema';
+import { InputUpdateProfile } from '../args/update_profile.args';
 
 @Resolver(() => User)
 export class UserResolver {
@@ -38,6 +42,23 @@ export class UserResolver {
       msg: response ? 'OK' : 'Failed to get userid',
       response,
     };
+  }
+  @Query(() => ProfileResponse)
+  profile(@Args('id', { type: () => ID! }) id: string) {
+    const response = this.userService.findById(id);
+    return {
+      err: response ? 0 : 1,
+      msg: response ? 'OK' : 'Failed to get user profile',
+      response,
+    };
+  }
+
+  @Mutation(() => UpdateProfileResponse)
+  async updateProfile(
+    @Args('input', { type: () => InputUpdateProfile })
+    input: InputUpdateProfile,
+  ) {
+    console.log(input, 'input');
   }
 
   @ResolveField(() => Post)

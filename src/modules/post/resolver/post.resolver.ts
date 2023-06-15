@@ -1,6 +1,7 @@
 import {
   Args,
   ID,
+  Mutation,
   Parent,
   Query,
   ResolveField,
@@ -29,6 +30,14 @@ import { UserEntity } from 'src/modules/user/model/user.entity';
 import { ImageEntity } from 'src/modules/image/model/image.entity';
 import { AttributeEntity } from 'src/modules/attribute/model/attribute.entity';
 import { OverviewEntity } from 'src/modules/overview/model/overview.entity';
+import { InputCreatePost } from '../args/input_create_post.args';
+import { CreatePostResponse } from '../schema/createPostResponse.schema';
+import { UpdatePostResponse } from '../schema/updatePostResponse.schema';
+import { InputUpdatePost } from '../args/input_update_post.args';
+import { DeletePostResponse } from '../schema/deletePostResponse.schema';
+import { InputNewPost } from '../args/input_new_post.args';
+import { NewPostResponse } from '../schema/newPostResponse.schema';
+
 @Resolver(() => Post) // Specify the object type as Post
 export class PostResolver {
   constructor(
@@ -58,13 +67,13 @@ export class PostResolver {
     const priceNumber = input.priceNumber;
     const areaNumber = input.areaNumber;
     const provinceCode = input.provinceCode;
-    const userId = input.userid;
+    // const userId = input.userid;
     const pageSize = input.pageSize || +process.env.LIMIT;
     const pageNumber = input.pageNumber || 1;
     const orderBy = input.orderBy;
     const direction = input.direction;
     const where = {
-      ...(userId && { userId }),
+      // ...(userId && { userId }),
       ...(title && { title: ILike(`%${title}%`) }),
       ...(address && { address: ILike(`%${address}%`) }),
       ...(start && { start }),
@@ -112,6 +121,30 @@ export class PostResolver {
     };
   }
 
+  @Query(() => NewPostResponse)
+  async newPost(
+    @Args('input', { type: () => InputNewPost }) input: InputNewPost,
+  ) {
+    console.log(input, 'input');
+    const pageSize = input.pageSize || +process.env.LIMIT;
+    const pageNumber = input.pageNumber || 1;
+    const limit = pageSize;
+    const offset = pageSize * (pageNumber - 1);
+    const [data, totalCount] = await this.postRepository.findAndCount({
+      take: limit,
+      skip: offset,
+    });
+
+    return {
+      err: data ? 0 : 1,
+      msg: data ? 'OK' : 'Failed to get new post',
+      total: totalCount,
+      pageNumber,
+      pageSize,
+      response: data,
+    };
+  }
+
   @Query(() => PostIdResponse)
   postId(@Args('id', { type: () => ID }) id: string) {
     const response = this.postService.findById(id);
@@ -120,6 +153,25 @@ export class PostResolver {
       msg: response ? 'OK' : 'Failed to get postId',
       response,
     };
+  }
+
+  @Mutation(() => CreatePostResponse)
+  async createPost(
+    @Args('input', { type: () => InputCreatePost }) input: InputCreatePost,
+  ) {
+    console.log(input, 'input');
+  }
+
+  @Mutation(() => UpdatePostResponse)
+  async updatePost(
+    @Args('input', { type: () => InputUpdatePost }) input: InputUpdatePost,
+  ) {
+    console.log(input, 'input');
+  }
+
+  @Mutation(() => DeletePostResponse)
+  async deletePost(@Args('id', { type: () => ID }) id: string) {
+    console.log(id, 'id');
   }
 
   // @ResolveField(() => User)

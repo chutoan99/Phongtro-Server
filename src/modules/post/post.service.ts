@@ -9,10 +9,10 @@ export class PostService {
     @InjectRepository(PostEntity)
     private readonly postRepository: Repository<PostEntity>,
   ) {}
-  async findAll() {
-    const response = await this.postRepository.find();
-    return response;
-  }
+  // async findAll() {
+  //   const response = await this.postRepository.find();
+  //   return response;
+  // }
 
   async findById(id: string) {
     const response = await this.postRepository.findOne({
