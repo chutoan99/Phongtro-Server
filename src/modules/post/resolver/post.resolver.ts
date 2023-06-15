@@ -19,13 +19,7 @@ import { PostIdResponse } from '../schema/postIdResponse.schema';
 import { InputPost } from '../args/input_post.args';
 import { PostEntity } from '../model/post.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import {
-  Repository,
-  Between,
-  FindOperator,
-  OrderByCondition,
-  ILike,
-} from 'typeorm';
+import { Repository } from 'typeorm';
 import { UserEntity } from 'src/modules/user/model/user.entity';
 import { ImageEntity } from 'src/modules/image/model/image.entity';
 import { AttributeEntity } from 'src/modules/attribute/model/attribute.entity';
@@ -60,118 +54,44 @@ export class PostResolver {
 
   @Query(() => PostResponse)
   async post(@Args('input', { type: () => InputPost }) input: InputPost) {
-    const title = input.title;
-    const start = input.start;
-    const address = input.address;
-    const categoryCode = input.categoryCode;
-    const priceNumber = input.priceNumber;
-    const areaNumber = input.areaNumber;
-    const provinceCode = input.provinceCode;
-    // const userId = input.userid;
-    const pageSize = input.pageSize || +process.env.LIMIT;
-    const pageNumber = input.pageNumber || 1;
-    const orderBy = input.orderBy;
-    const direction = input.direction;
-    const where = {
-      // ...(userId && { userId }),
-      ...(title && { title: ILike(`%${title}%`) }),
-      ...(address && { address: ILike(`%${address}%`) }),
-      ...(start && { start }),
-      ...(categoryCode && { categoryCode }),
-      ...(provinceCode && { provinceCode }),
-      ...(priceNumber && {
-        priceNumber: Array.isArray(priceNumber)
-          ? Between(priceNumber[0], priceNumber[1])
-          : (priceNumber as FindOperator<number>),
-      }),
-      ...(areaNumber && {
-        areaNumber: Array.isArray(areaNumber)
-          ? Between(areaNumber[0], areaNumber[1])
-          : (areaNumber as FindOperator<number>),
-      }),
-    };
-    const columnToOrderCondition: { [key: string]: 'ASC' | 'DESC' } = {
-      createdAt: 'DESC',
-      // Add more column names and their corresponding order conditions here
-    };
-
-    const defaultOrderBy = 'createdAt';
-    const defaultDirection = 'DESC';
-
-    const order: OrderByCondition = {
-      [orderBy || defaultOrderBy]:
-        columnToOrderCondition[direction || defaultDirection],
-    };
-
-    const limit = pageSize;
-    const offset = pageSize * (pageNumber - 1);
-    const [data, totalCount] = await this.postRepository.findAndCount({
-      where: where,
-      take: limit,
-      skip: offset,
-    });
-
-    return {
-      err: data ? 0 : 1,
-      msg: data ? 'OK' : 'Failed to get post',
-      total: totalCount,
-      pageNumber,
-      pageSize,
-      response: data,
-    };
+    const response = await this.postService.findAll(input);
+    return response;
   }
 
   @Query(() => NewPostResponse)
   async newPost(
     @Args('input', { type: () => InputNewPost }) input: InputNewPost,
   ) {
-    console.log(input, 'input');
-    const pageSize = input.pageSize || +process.env.LIMIT;
-    const pageNumber = input.pageNumber || 1;
-    const limit = pageSize;
-    const offset = pageSize * (pageNumber - 1);
-    const [data, totalCount] = await this.postRepository.findAndCount({
-      take: limit,
-      skip: offset,
-    });
-
-    return {
-      err: data ? 0 : 1,
-      msg: data ? 'OK' : 'Failed to get new post',
-      total: totalCount,
-      pageNumber,
-      pageSize,
-      response: data,
-    };
+    const response = await this.postService.findAllNewPost(input);
+    return response;
   }
 
   @Query(() => PostIdResponse)
   postId(@Args('id', { type: () => ID }) id: string) {
     const response = this.postService.findById(id);
-    return {
-      err: response ? 0 : 1,
-      msg: response ? 'OK' : 'Failed to get postId',
-      response,
-    };
+    return response;
   }
 
   @Mutation(() => CreatePostResponse)
   async createPost(
     @Args('input', { type: () => InputCreatePost }) input: InputCreatePost,
   ) {
-    console.log(input, 'input');
+    const response = this.postService.createPost(input);
+    return response;
   }
 
   @Mutation(() => UpdatePostResponse)
   async updatePost(
     @Args('input', { type: () => InputUpdatePost }) input: InputUpdatePost,
   ) {
-    console.log(input, 'input');
+    const response = this.postService.updatePost(input);
+    return response;
   }
 
   @Mutation(() => DeletePostResponse)
   async deletePost(@Args('id', { type: () => ID }) id: string) {
-    console.log(id, 'id');
+    const response = this.postService.deletePost(id);
+    return response;
   }
 
   // @ResolveField(() => User)

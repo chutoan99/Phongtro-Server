@@ -9,10 +9,4 @@ export class OverviewService {
     @InjectRepository(OverviewEntity)
     private readonly overviewRepository: Repository<OverviewEntity>,
   ) {}
-  async findById(id: any) {
-    const response = await this.overviewRepository.findOne({
-      where: { id: id },
-    });
-    return response;
-  }
 }
