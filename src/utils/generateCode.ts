@@ -9,10 +9,10 @@ const generateCode = (value: string): string => {
     .replace(/[\u0300-\u036f]/g, '')
     .split(' ')
     .join('');
-  let merge = value + process.env.SECRET_GENERATE!;
+  const merge = value + process.env.SECRET_GENERATE!;
   let length = merge.length;
   for (let i = 0; i < 3; i++) {
-    let index =
+    const index =
       i === 2
         ? Math.floor(merge.length / 2 + length / 2)
         : Math.floor(length / 2);

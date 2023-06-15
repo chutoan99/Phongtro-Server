@@ -21,26 +21,13 @@ import { UserEntity } from './modules/user/model/user.entity';
 
 //module
 import { InsertModule } from './modules/insert/insert.module';
-import { AreaModule } from './modules/area/area.module';
-import { CategoryModule } from './modules/category/category.module';
-import { AttributeModule } from './modules/attribute/attribute.module';
-import { ImageModule } from './modules/image/image.module';
-import { ProvinceModule } from './modules/province/province.module';
-import { PriceModule } from './modules/price/price.module';
-import { UserModule } from './modules/user/user.module';
 import { PostModule } from './modules/post/post.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { SharedModule } from './modules/shared/shared.module';
 @Module({
   imports: [
-    AreaModule,
-    AttributeModule,
-    CategoryModule,
-    ImageModule,
-    ProvinceModule,
-    PriceModule,
-    UserModule,
     PostModule,
-    InsertModule,
+    // InsertModule,
     AuthModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,

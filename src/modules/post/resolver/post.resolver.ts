@@ -82,9 +82,10 @@ export class PostResolver {
 
   @Mutation(() => UpdatePostResponse)
   async updatePost(
+    @Args('id', { type: () => ID }) id: string,
     @Args('input', { type: () => InputUpdatePost }) input: InputUpdatePost,
   ) {
-    const response = this.postService.updatePost(input);
+    const response = await this.postService.updatePost(id, input);
     return response;
   }
 

@@ -1,18 +1,19 @@
-import moment from 'moment';
+import * as moment from 'moment';
 
 const formDate = (timeObj: Date): string => {
-  let day = timeObj.getDay() === 0 ? 'Chủ nhật' : `thứ ${timeObj.getDay() + 1}`;
-  let date = `${timeObj.getDate()}/${
+  const day =
+    timeObj.getDay() === 0 ? 'Chủ nhật' : `thứ ${timeObj.getDay() + 1}`;
+  const date = `${timeObj.getDate()}/${
     timeObj.getMonth() + 1
   }/${timeObj.getFullYear()}`;
-  let time = `${timeObj.getHours()}:${timeObj.getMinutes()}`;
+  const time = `${timeObj.getHours()}:${timeObj.getMinutes()}`;
   return `${day}, ${time} ${date}`;
 };
 
 const generaDate = (): { today: string; expireDay: string } => {
-  let gapExpire = Math.floor(Math.random() * 29) + 1;
-  let today = new Date();
-  let expireDay = moment(today).add(gapExpire, 'd').toDate();
+  const gapExpire = Math.floor(Math.random() * 29) + 1;
+  const today = new Date();
+  const expireDay = moment(today).add(gapExpire, 'd').toDate();
   return {
     today: formDate(today),
     expireDay: formDate(expireDay),

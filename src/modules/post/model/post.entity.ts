@@ -21,16 +21,16 @@ export class PostEntity {
   id: string;
 
   @Column()
-  title: string;
+  title: string | null;
 
   @Column({ nullable: true })
-  start: string;
+  start: number | null;
 
   @Column()
   labelCode: string;
 
   @Column()
-  address: string;
+  address: string | null;
 
   @Column()
   attributesId: string;
@@ -48,7 +48,7 @@ export class PostEntity {
   provinceCode: string;
 
   @Column('text')
-  description: string;
+  description: string | null;
 
   @Column('uuid', { default: uuidv4() })
   userId: string;

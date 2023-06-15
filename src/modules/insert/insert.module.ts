@@ -13,6 +13,13 @@ import { PostEntity } from '../post/model/post.entity';
 import { PriceEntity } from '../price/model/price.entity';
 import { ProvinceEntity } from '../province/model/province.entity';
 import { UserEntity } from '../user/model/user.entity';
+import { AreaModule } from '../area/area.module';
+import { AttributeModule } from '../attribute/attribute.module';
+import { CategoryModule } from '../category/category.module';
+import { ImageModule } from '../image/image.module';
+import { ProvinceModule } from '../province/province.module';
+import { PriceModule } from '../price/price.module';
+import { UserModule } from '../user/user.module';
 
 @Module({
   imports: [
@@ -28,6 +35,13 @@ import { UserEntity } from '../user/model/user.entity';
       OverviewEntity,
       UserEntity,
     ]), // Add other entities here if needed
+    AreaModule,
+    AttributeModule,
+    CategoryModule,
+    ImageModule,
+    ProvinceModule,
+    PriceModule,
+    UserModule,
   ],
   controllers: [InsertController],
   providers: [InsertService],

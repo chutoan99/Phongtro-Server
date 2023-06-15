@@ -8,6 +8,7 @@ import { UserResolver } from './resolver/user.resolver';
 import { PostEntity } from '../post/model/post.entity';
 import { PostService } from '../post/post.service';
 import { InputUpdateProfile } from './args/update_profile.args';
+import { AttributeModule } from '../attribute/attribute.module';
 
 @Module({
   imports: [TypeOrmModule.forFeature([UserEntity, PostEntity])],
