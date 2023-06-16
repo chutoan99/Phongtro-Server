@@ -51,6 +51,14 @@ export interface InputUpdatePost {
     title: string;
 }
 
+export interface InputUpdateProfile {
+    name: string;
+    avatar?: Nullable<string>;
+    phone?: Nullable<string>;
+    zalo?: Nullable<string>;
+    file?: Nullable<string>;
+}
+
 export interface InputLogin {
     phone: string;
     password: string;
@@ -60,6 +68,21 @@ export interface InputRegister {
     name: string;
     phone: string;
     password: string;
+}
+
+export interface Area {
+    id: number;
+    order: number;
+    code: string;
+    value: string;
+    createdAt: DateTime;
+    updatedAt: DateTime;
+}
+
+export interface AreaResponse {
+    err: number;
+    msg: string;
+    response: Area[];
 }
 
 export interface Attribute {
@@ -72,6 +95,29 @@ export interface Attribute {
     updatedAt: DateTime;
 }
 
+export interface AttributeResponse {
+    err: number;
+    msg: string;
+    response: Attribute[];
+}
+
+export interface Category {
+    id: string;
+    code: string;
+    value: string;
+    header: string;
+    subHeader: string;
+    path: string;
+    createdAt: DateTime;
+    updatedAt: DateTime;
+}
+
+export interface CategoryResponse {
+    err: number;
+    msg: string;
+    response: Category[];
+}
+
 export interface Image {
     id: string;
     total: number;
@@ -79,6 +125,41 @@ export interface Image {
     postImg?: Nullable<string>;
     createdAt: DateTime;
     updatedAt: DateTime;
+}
+
+export interface ImageResponse {
+    err: number;
+    msg: string;
+    response: Image[];
+}
+
+export interface Province {
+    id: string;
+    code: string;
+    value: string;
+    createdAt: DateTime;
+    updatedAt: DateTime;
+}
+
+export interface ProvinceResponse {
+    err: number;
+    msg: string;
+    response: Province[];
+}
+
+export interface Price {
+    id: string;
+    order: number;
+    code: string;
+    value: string;
+    createdAt: DateTime;
+    updatedAt: DateTime;
+}
+
+export interface PriceResponse {
+    err: number;
+    msg: string;
+    response: Price[];
 }
 
 export interface Overview {
@@ -90,19 +171,6 @@ export interface Overview {
     created: string;
     expired: string;
     bonus: string;
-    createdAt: DateTime;
-    updatedAt: DateTime;
-}
-
-export interface User {
-    id: string;
-    name: string;
-    password: string;
-    avatar?: Nullable<string>;
-    phone?: Nullable<string>;
-    zalo?: Nullable<string>;
-    file?: Nullable<string>;
-    post: Post;
     createdAt: DateTime;
     updatedAt: DateTime;
 }
@@ -130,6 +198,43 @@ export interface Post {
     listImage: Image;
     attributes: Attribute;
     overviews: Overview;
+}
+
+export interface User {
+    id: string;
+    name: string;
+    password: string;
+    avatar?: Nullable<string>;
+    phone?: Nullable<string>;
+    zalo?: Nullable<string>;
+    file?: Nullable<string>;
+    post: Post;
+    createdAt: DateTime;
+    updatedAt: DateTime;
+}
+
+export interface UserResponse {
+    err: number;
+    msg: string;
+    response: User[];
+}
+
+export interface UserIdResponse {
+    err: number;
+    msg: string;
+    response: User;
+}
+
+export interface ProfileResponse {
+    err: number;
+    msg: string;
+    response: User;
+}
+
+export interface UpdateProfileResponse {
+    err: number;
+    msg: string;
+    response: User;
 }
 
 export interface PostResponse {
@@ -197,18 +302,6 @@ export interface NewPostResponse {
     pageSize: number;
 }
 
-export interface AttributeResponse {
-    err: number;
-    msg: string;
-    response: Attribute[];
-}
-
-export interface ImageResponse {
-    err: number;
-    msg: string;
-    response: Image[];
-}
-
 export interface LoginResponse {
     err: number;
     msg: string;
@@ -226,14 +319,22 @@ export interface IQuery {
     post(input: InputPost): PostResponse | Promise<PostResponse>;
     newPost(input: InputNewPost): NewPostResponse | Promise<NewPostResponse>;
     postId(id: string): PostIdResponse | Promise<PostIdResponse>;
+    area(): AreaResponse | Promise<AreaResponse>;
     attribute(): AttributeResponse | Promise<AttributeResponse>;
+    category(): CategoryResponse | Promise<CategoryResponse>;
     image(): ImageResponse | Promise<ImageResponse>;
+    province(): ProvinceResponse | Promise<ProvinceResponse>;
+    price(): PriceResponse | Promise<PriceResponse>;
+    user(): UserResponse | Promise<UserResponse>;
+    userId(id: string): UserIdResponse | Promise<UserIdResponse>;
+    profile(id: string): ProfileResponse | Promise<ProfileResponse>;
 }
 
 export interface IMutation {
     createPost(input: InputCreatePost): CreatePostResponse | Promise<CreatePostResponse>;
     updatePost(id: string, input: InputUpdatePost): UpdatePostResponse | Promise<UpdatePostResponse>;
     deletePost(id: string): DeletePostResponse | Promise<DeletePostResponse>;
+    updateProfile(input: InputUpdateProfile): UpdateProfileResponse | Promise<UpdateProfileResponse>;
     login(input: InputLogin): LoginResponse | Promise<LoginResponse>;
     register(input: InputRegister): RegisterResponse | Promise<RegisterResponse>;
 }

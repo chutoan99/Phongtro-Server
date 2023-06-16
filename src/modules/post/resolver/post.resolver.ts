@@ -95,13 +95,13 @@ export class PostResolver {
     return response;
   }
 
-  // @ResolveField(() => User)
-  // async user(@Parent() post: Post) {
-  //   const response = await this.userRepository.findOne({
-  //     where: { id: post.userId },
-  //   });
-  //   return response;
-  // }
+  @ResolveField(() => User)
+  async user(@Parent() post: Post) {
+    const response = await this.userRepository.findOne({
+      where: { id: post.userId },
+    });
+    return response;
+  }
 
   @ResolveField(() => Image)
   async listImage(@Parent() post: Post) {

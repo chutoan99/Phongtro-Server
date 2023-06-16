@@ -65,41 +65,17 @@ export class InsertService {
     try {
       const hashPassWord = (password) =>
         bcrypt.hashSync(password, bcrypt.genSaltSync(12)); // HASH PASSWORD
+      const labelCodes: LabelCode[] = [];
+      const provinceCodes: ProvinceCode[] = [];
 
-      await this.areaRepository.save(
-        dataArea.map((area, index) => ({
-          order: index + 1,
-          code: area.code,
-          value: area.value,
-        })),
-      );
-
-      await this.categoryRepository.save(
-        categories.map((item) => ({
-          code: item.code,
-          value: item.value,
-          header: item.content.title,
-          subHeader: item.content.description,
-          path: item.path,
-        })),
-      );
-
-      await this.priceRepository.save(
-        dataPrice.map((item, index) => ({
-          order: index + 1,
-          code: item?.code,
-          value: item?.value,
-        })),
-      );
       await Promise.all(
         dataPost.map(async (dataBody) => {
-          const labelCodes: LabelCode[] = [];
-          const provinceCodes: ProvinceCode[] = [];
           for (const item of dataBody.content) {
             // tạo và kiểm tra labelCode
             const labelCode = generateCode(
               item?.header?.class?.classType,
             ).trim();
+
             if (labelCodes.every((item) => item?.code !== labelCode)) {
               labelCodes.push({
                 code: generateCode(item?.header?.class?.classType).trim(),
@@ -140,8 +116,7 @@ export class InsertService {
               start: item?.header?.star,
               address: item?.header?.address,
               description: description,
-              user: { id: userId }, // Assigning user relationship object
-              // userId: userId,
+              userId: userId,
               labelCode: labelCode,
               provinceCode: provinceCode,
               categoryCode: dataBody.code,
@@ -211,33 +186,58 @@ export class InsertService {
                 ?.content,
               avatar: 'https://phongtro123.com/images/default-user.png',
             });
-
-            for (const item of provinceCodes) {
-              const foundItem = await this.provinceRepository.findOne({
-                where: { code: item.code },
-              });
-              if (!foundItem) {
-                await this.provinceRepository.save({
-                  code: item?.code,
-                  value: item?.value,
-                });
-              }
-            }
-
-            for (const item of labelCodes) {
-              const foundItem = await this.labelRepository.findOne({
-                where: { code: item.code },
-              });
-
-              if (!foundItem) {
-                await this.labelRepository.save({
-                  code: item?.code,
-                  value: item?.value,
-                });
-              }
-            }
           }
         }),
+      );
+      for (const item of provinceCodes) {
+        const foundItem = await this.provinceRepository.findOne({
+          where: { code: item.code },
+        });
+        if (!foundItem) {
+          await this.provinceRepository.save({
+            code: item?.code,
+            value: item?.value,
+          });
+        }
+      }
+
+      for (const item of labelCodes) {
+        const foundItem = await this.labelRepository.findOne({
+          where: { code: item.code },
+        });
+
+        if (!foundItem) {
+          await this.labelRepository.save({
+            code: item?.code,
+            value: item?.value,
+          });
+        }
+      }
+
+      await this.areaRepository.save(
+        dataArea.map((area, index) => ({
+          order: index + 1,
+          code: area.code,
+          value: area.value,
+        })),
+      );
+
+      await this.categoryRepository.save(
+        categories.map((item) => ({
+          code: item.code,
+          value: item.value,
+          header: item.content.title,
+          subHeader: item.content.description,
+          path: item.path,
+        })),
+      );
+
+      await this.priceRepository.save(
+        dataPrice.map((item, index) => ({
+          order: index + 1,
+          code: item?.code,
+          value: item?.value,
+        })),
       );
 
       return 'Data inserted successfully';

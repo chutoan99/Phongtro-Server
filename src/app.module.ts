@@ -23,11 +23,10 @@ import { UserEntity } from './modules/user/model/user.entity';
 import { InsertModule } from './modules/insert/insert.module';
 import { PostModule } from './modules/post/post.module';
 import { AuthModule } from './modules/auth/auth.module';
-import { SharedModule } from './modules/shared/shared.module';
 @Module({
   imports: [
     PostModule,
-    // InsertModule,
+    InsertModule,
     AuthModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
@@ -65,7 +64,6 @@ import { SharedModule } from './modules/shared/shared.module';
       CategoryEntity,
       PriceEntity,
       ProvinceEntity,
-      ProvinceEntity,
       LabelEntity,
       ImageEntity,
       PostEntity,
@@ -79,6 +77,4 @@ import { SharedModule } from './modules/shared/shared.module';
   controllers: [],
   providers: [],
 })
-export class AppModule {
-  constructor(private dataSource: DataSource) {}
-}
+export class AppModule {}

@@ -24,19 +24,13 @@ import { ProvinceService } from '../province/province.service';
   imports: [
     TypeOrmModule.forFeature([
       PostEntity,
-      UserEntity,
-      ImageEntity,
-      AttributeEntity,
-      OverviewEntity,
       ProvinceEntity,
+      AttributeEntity,
       LabelEntity,
-      AttributeModule,
-      ImageModule,
+      ImageEntity,
+      OverviewEntity,
+      UserEntity,
     ]),
-    AttributeModule,
-    ImageModule,
-    OverviewModule,
-    LabelModule,
   ],
   controllers: [],
   providers: [

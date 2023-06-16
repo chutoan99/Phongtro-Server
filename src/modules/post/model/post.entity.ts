@@ -71,18 +71,18 @@ export class PostEntity {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  // @ManyToOne(() => UserEntity, (user: UserEntity) => user.posts)
-  // user: UserEntity;
-
-  @OneToOne(() => ImageEntity, (image: ImageEntity) => image.post)
-  images: ImageEntity;
-
   @OneToOne(
     () => AttributeEntity,
     (attribute: AttributeEntity) => attribute.post,
   )
   attributes: AttributeEntity;
 
+  @OneToOne(() => ImageEntity, (image: ImageEntity) => image.post)
+  images: ImageEntity;
+
   @OneToOne(() => OverviewEntity, (overview: OverviewEntity) => overview.post)
   overviews: OverviewEntity;
+
+  @ManyToOne(() => UserEntity, (user: UserEntity) => user.posts)
+  user: UserEntity;
 }

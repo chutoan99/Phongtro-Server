@@ -6,6 +6,7 @@ import {
   UpdateDateColumn,
   PrimaryColumn,
   OneToMany,
+  OneToOne,
 } from 'typeorm';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -38,6 +39,6 @@ export class UserEntity {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  // @OneToMany(() => PostEntity, (post: PostEntity) => post.user)
-  // posts: PostEntity[];
+  @OneToOne(() => PostEntity, (post: PostEntity) => post.user)
+  posts: PostEntity[];
 }
