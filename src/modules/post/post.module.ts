@@ -10,14 +10,9 @@ import { AttributeEntity } from '../attribute/model/attribute.entity';
 import { OverviewEntity } from '../overview/model/overview.entity';
 import { InputPost } from './args/input_post.args';
 import { InputCreatePost } from './args/input_create_post.args';
-import { InputNewPost } from './args/input_new_post.args';
 import { ProvinceEntity } from '../province/model/province.entity';
 import { LabelEntity } from '../label/model/label.entity';
 import { InputUpdatePost } from './args/input_update_post.args';
-import { AttributeModule } from '../attribute/attribute.module';
-import { ImageModule } from '../image/image.module';
-import { OverviewModule } from '../overview/overview.module';
-import { LabelModule } from '../label/label.module';
 import { ProvinceService } from '../province/province.service';
 
 @Module({
@@ -38,7 +33,6 @@ import { ProvinceService } from '../province/province.service';
     PostResolver,
     InputPost,
     InputCreatePost,
-    InputNewPost,
     InputUpdatePost,
     ProvinceService,
   ],

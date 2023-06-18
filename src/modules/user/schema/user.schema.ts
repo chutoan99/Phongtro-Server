@@ -24,8 +24,8 @@ export class User {
   @Field({ nullable: true })
   file: string | null;
 
-  @Field(() => Post)
-  post: Post;
+  @Field(() => [Post])
+  post: [Post];
 
   @Field((type) => Date)
   createdAt: Date;

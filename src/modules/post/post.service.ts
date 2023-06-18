@@ -9,7 +9,6 @@ import {
   ILike,
 } from 'typeorm';
 import { InputPost } from './args/input_post.args';
-import { InputNewPost } from './args/input_new_post.args';
 import { InputCreatePost } from './args/input_create_post.args';
 import { InputUpdatePost } from './args/input_update_post.args';
 import { v4 as uuidv4 } from 'uuid';
@@ -48,16 +47,14 @@ export class PostService {
     const start = input.start ? parseInt(input.start, 10) : undefined;
     const address = input.address;
     const categoryCode = input.categoryCode;
-    const priceNumber = input.priceNumber;
-    const areaNumber = input.areaNumber;
+    const priceNumber = input.priceNumber.length > 1 ? input.priceNumber : null;
+    const areaNumber = input.areaNumber.length > 1 ? input.areaNumber : null;
     const provinceCode = input.provinceCode;
-    // const userId = input.userid;
     const pageSize = input.pageSize || +process.env.LIMIT;
     const pageNumber = input.pageNumber || 1;
     const orderBy = input.orderBy;
     const direction = input.direction;
     const where = {
-      // ...(userId && { userId }),
       ...(title && { title: ILike(`%${title}%`) }),
       ...(address && { address: ILike(`%${address}%`) }),
       ...(start && { start }),
@@ -105,26 +102,6 @@ export class PostService {
     };
   }
 
-  async findAllNewPost(input: InputNewPost) {
-    const pageSize = input.pageSize || +process.env.LIMIT;
-    const pageNumber = input.pageNumber || 1;
-    const limit = pageSize;
-    const offset = pageSize * (pageNumber - 1);
-    const [data, totalCount] = await this.postRepository.findAndCount({
-      take: limit,
-      skip: offset,
-    });
-
-    return {
-      err: data ? 0 : 1,
-      msg: data ? 'OK' : 'Failed to get new post',
-      total: totalCount,
-      pageNumber,
-      pageSize,
-      response: data,
-    };
-  }
-
   async findById(id: string) {
     const response = await this.postRepository.findOne({
       where: {
@@ -155,7 +132,7 @@ export class PostService {
       const title = input.title;
       const type = input.type;
       const start = input.start;
-      console.log(input, 'input');
+
       const attributesId = uuidv4();
       const imagesId = uuidv4();
       const overviewId = uuidv4();
@@ -188,7 +165,6 @@ export class PostService {
         priceNumber,
         areaNumber,
       });
-      console.log(post, 'post');
       await this.postRepository.save(post);
 
       // Create Attribute
@@ -199,7 +175,6 @@ export class PostService {
         published: moment(new Date()).format('DD/MM/YYYY'),
         hashtag: `#${hashtag}`,
       });
-      console.log(attribute, 'attribute');
       await this.attributeRepository.save(attribute);
 
       // Create Image
@@ -209,7 +184,6 @@ export class PostService {
         postImg: images[0],
         total: images.length,
       });
-      console.log(image, 'image');
       await this.imageRepository.save(image);
 
       // Create Overview
@@ -223,7 +197,6 @@ export class PostService {
         created: currentDate.today,
         expired: currentDate.expireDay,
       });
-      console.log(overview, 'overview');
       await this.overviewRepository.save(overview);
 
       // Create or find Province
@@ -245,7 +218,6 @@ export class PostService {
             ? province.replace('Thành phố', '')
             : province.replace('Tỉnh', ''),
         });
-        console.log(provinceEntity, 'provinceEntity');
         await this.provinceRepository.save(provinceEntity);
       }
 
@@ -261,7 +233,6 @@ export class PostService {
           code: labelCode,
           value: label,
         });
-        console.log(labelEntity, 'labelEntity');
         await this.labelRepository.save(labelEntity);
       }
 

@@ -4,6 +4,7 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  DeleteDateColumn,
 } from 'typeorm';
 
 @Entity('Categories')
@@ -26,9 +27,15 @@ export class CategoryEntity {
   @Column()
   path: string;
 
+  @Column({ nullable: true })
+  isActive: boolean;
+
   @CreateDateColumn()
   createdAt: Date;
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  @DeleteDateColumn()
+  deleteAt: Date;
 }

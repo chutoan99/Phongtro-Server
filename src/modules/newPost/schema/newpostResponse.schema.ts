@@ -1,5 +1,5 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
-import { NewPost } from './newPost.schema';
+import { NewPost } from './newpost.schema';
 
 @ObjectType()
 export class NewPostResponse {

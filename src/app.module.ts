@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { DataSource } from 'typeorm';
 import { join } from 'path';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
@@ -23,10 +22,31 @@ import { UserEntity } from './modules/user/model/user.entity';
 import { InsertModule } from './modules/insert/insert.module';
 import { PostModule } from './modules/post/post.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { NewPostModule } from './modules/newPost/newpost.module';
+import { AreaModule } from './modules/area/area.module';
+import { CategoryModule } from './modules/category/category.module';
+import { PriceModule } from './modules/price/price.module';
+import { ProvinceModule } from './modules/province/province.module';
+import { LabelModule } from './modules/label/label.module';
+import { ImageModule } from './modules/image/image.module';
+import { AttributeModule } from './modules/attribute/attribute.module';
+import { OverviewModule } from './modules/overview/overview.module';
+import { UserModule } from './modules/user/user.module';
+
 @Module({
   imports: [
+    AreaModule,
+    CategoryModule,
+    PriceModule,
+    ProvinceModule,
+    LabelModule,
+    ImageModule,
+    AttributeModule,
+    OverviewModule,
+    UserModule,
     PostModule,
     InsertModule,
+    NewPostModule,
     AuthModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,

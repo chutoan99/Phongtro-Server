@@ -16,12 +16,18 @@ import { User } from '../schema/user.schema';
 import { ProfileResponse } from '../schema/profileResponse.schema';
 import { UpdateProfileResponse } from '../schema/updateProfileResponse.schema';
 import { InputUpdateProfile } from '../args/update_profile.args';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { PostEntity } from 'src/modules/post/model/post.entity';
 
 @Resolver(() => User)
 export class UserResolver {
   constructor(
     private readonly userService: UserService,
     private readonly postService: PostService,
+
+    @InjectRepository(PostEntity)
+    private readonly postRepository: Repository<PostEntity>,
   ) {}
 
   @Query(() => UserResponse)
@@ -63,7 +69,7 @@ export class UserResolver {
 
   @ResolveField(() => Post)
   async post(@Parent() user: User) {
-    const post = await this.postService.findById(user.id);
+    const post = await this.postRepository.find({ where: { userId: user.id } });
     return post;
   }
 }

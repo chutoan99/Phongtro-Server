@@ -10,7 +10,6 @@ import {
 import { PostResponse } from '../schema/postResponse.schema';
 import { PostService } from '../post.service';
 import { User } from 'src/modules/user/schema/user.schema';
-import { UserService } from 'src/modules/user/user.service';
 import { Post } from '../schema/post.schema';
 import { Image } from 'src/modules/image/schema/image.schema';
 import { Attribute } from 'src/modules/attribute/schema/attribute.schema';
@@ -29,8 +28,6 @@ import { CreatePostResponse } from '../schema/createPostResponse.schema';
 import { UpdatePostResponse } from '../schema/updatePostResponse.schema';
 import { InputUpdatePost } from '../args/input_update_post.args';
 import { DeletePostResponse } from '../schema/deletePostResponse.schema';
-import { InputNewPost } from '../args/input_new_post.args';
-import { NewPostResponse } from '../schema/newPostResponse.schema';
 
 @Resolver(() => Post) // Specify the object type as Post
 export class PostResolver {
@@ -53,22 +50,14 @@ export class PostResolver {
   ) {}
 
   @Query(() => PostResponse)
-  async post(@Args('input', { type: () => InputPost }) input: InputPost) {
+  async post(@Args('input', { type: () => InputPost! }) input: InputPost) {
     const response = await this.postService.findAll(input);
     return response;
   }
 
-  @Query(() => NewPostResponse)
-  async newPost(
-    @Args('input', { type: () => InputNewPost }) input: InputNewPost,
-  ) {
-    const response = await this.postService.findAllNewPost(input);
-    return response;
-  }
-
   @Query(() => PostIdResponse)
-  postId(@Args('id', { type: () => ID }) id: string) {
-    const response = this.postService.findById(id);
+  async postId(@Args('id', { type: () => ID }) id: string) {
+    const response = await this.postService.findById(id);
     return response;
   }
 

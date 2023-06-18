@@ -10,8 +10,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   PrimaryColumn,
-  OneToMany,
-  JoinColumn,
+  DeleteDateColumn,
 } from 'typeorm';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -65,11 +64,17 @@ export class PostEntity {
   @Column('float')
   areaNumber: number;
 
+  @Column({ nullable: true })
+  isActive: boolean;
+
   @CreateDateColumn()
   createdAt: Date;
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  @DeleteDateColumn()
+  deleteAt: Date;
 
   @OneToOne(
     () => AttributeEntity,

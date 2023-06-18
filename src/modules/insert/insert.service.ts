@@ -110,31 +110,18 @@ export class InsertService {
             );
             const description = JSON.stringify(item?.mainContent?.content);
 
-            await this.postRepository.save({
-              id: postId,
-              title: item?.header?.title,
-              start: item?.header?.star,
-              address: item?.header?.address,
-              description: description,
-              userId: userId,
-              labelCode: labelCode,
-              provinceCode: provinceCode,
-              categoryCode: dataBody.code,
-              attributesId: attributesId,
-              overviewId: overviewId,
-              imagesId: imagesId,
-              areaCode: dataArea.find(
-                (area) => area.max > currentArea && area.min <= currentArea,
-              )?.code,
-              priceCode: dataPrice.find(
-                (area) => area.max > currentPrice && area.min <= currentPrice,
-              )?.code,
-              priceNumber: getNumberFromStringV2(
-                item?.header?.attributes?.price,
-              ),
-              areaNumber: getNumberFromStringV2(
-                item?.header?.attributes?.acreage,
-              ),
+            await this.userRepository.save({
+              id: userId,
+              name: item?.contact?.content.find((i) => i.name === 'Liên hệ:')
+                ?.content,
+              password: hashPassWord('123456'),
+              phone: item?.contact?.content.find(
+                (i) => i.name === 'Điện thoại:',
+              )?.content,
+              zalo: item?.contact?.content.find((i) => i.name === 'Zalo')
+                ?.content,
+              avatar: 'https://phongtro123.com/images/default-user.png',
+              isActive: true,
             });
 
             await this.attributeRepository.save({
@@ -143,6 +130,7 @@ export class InsertService {
               acreage: item?.header?.attributes?.acreage,
               published: item?.header?.attributes?.published,
               hashtag: item?.header?.attributes?.hashtag,
+              isActive: true,
             });
 
             await this.imageRepository.save({
@@ -150,6 +138,7 @@ export class InsertService {
               image: JSON.stringify(item?.images),
               postImg: item?.images[0],
               total: item?.images.length,
+              isActive: true,
             });
 
             await this.overviewRepository.save({
@@ -172,19 +161,35 @@ export class InsertService {
               expired: item?.overview?.content.find(
                 (i) => i.name === 'Ngày hết hạn:',
               )?.content,
+              isActive: true,
             });
 
-            await this.userRepository.save({
-              id: userId,
-              name: item?.contact?.content.find((i) => i.name === 'Liên hệ:')
-                ?.content,
-              password: hashPassWord('123456'),
-              phone: item?.contact?.content.find(
-                (i) => i.name === 'Điện thoại:',
-              )?.content,
-              zalo: item?.contact?.content.find((i) => i.name === 'Zalo')
-                ?.content,
-              avatar: 'https://phongtro123.com/images/default-user.png',
+            await this.postRepository.save({
+              id: postId,
+              title: item?.header?.title,
+              start: item?.header?.star,
+              address: item?.header?.address,
+              description: description,
+              userId: userId,
+              labelCode: labelCode,
+              provinceCode: provinceCode,
+              categoryCode: dataBody.code,
+              attributesId: attributesId,
+              overviewId: overviewId,
+              imagesId: imagesId,
+              isActive: true,
+              areaCode: dataArea.find(
+                (area) => area.max > currentArea && area.min <= currentArea,
+              )?.code,
+              priceCode: dataPrice.find(
+                (area) => area.max > currentPrice && area.min <= currentPrice,
+              )?.code,
+              priceNumber: getNumberFromStringV2(
+                item?.header?.attributes?.price,
+              ),
+              areaNumber: getNumberFromStringV2(
+                item?.header?.attributes?.acreage,
+              ),
             });
           }
         }),
@@ -197,6 +202,7 @@ export class InsertService {
           await this.provinceRepository.save({
             code: item?.code,
             value: item?.value,
+            isActive: true,
           });
         }
       }
@@ -210,6 +216,7 @@ export class InsertService {
           await this.labelRepository.save({
             code: item?.code,
             value: item?.value,
+            isActive: true,
           });
         }
       }
@@ -219,6 +226,7 @@ export class InsertService {
           order: index + 1,
           code: area.code,
           value: area.value,
+          isActive: true,
         })),
       );
 
@@ -229,6 +237,7 @@ export class InsertService {
           header: item.content.title,
           subHeader: item.content.description,
           path: item.path,
+          isActive: true,
         })),
       );
 
@@ -237,6 +246,7 @@ export class InsertService {
           order: index + 1,
           code: item?.code,
           value: item?.value,
+          isActive: true,
         })),
       );
 

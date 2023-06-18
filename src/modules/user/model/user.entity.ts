@@ -7,6 +7,7 @@ import {
   PrimaryColumn,
   OneToMany,
   OneToOne,
+  DeleteDateColumn,
 } from 'typeorm';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -33,11 +34,17 @@ export class UserEntity {
   @Column()
   avatar: string;
 
+  @Column({ nullable: true })
+  isActive: boolean;
+
   @CreateDateColumn()
   createdAt: Date;
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  @DeleteDateColumn()
+  deleteAt: Date;
 
   @OneToOne(() => PostEntity, (post: PostEntity) => post.user)
   posts: PostEntity[];

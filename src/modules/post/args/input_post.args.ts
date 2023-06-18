@@ -15,9 +15,6 @@ export class InputPost {
   direction: string;
 
   @Field(() => String)
-  userid: string;
-
-  @Field(() => String)
   title: string;
 
   @Field(() => String)
@@ -29,12 +26,12 @@ export class InputPost {
   @Field(() => String)
   categoryCode: string;
 
-  @Field(() => [Int])
-  priceNumber: number[];
-
-  @Field(() => [Int])
-  areaNumber: number[];
-
   @Field(() => String)
   provinceCode: string;
+
+  @Field(() => [Int], { nullable: true })
+  priceNumber: number[];
+
+  @Field(() => [Int], { nullable: true })
+  areaNumber: number[];
 }

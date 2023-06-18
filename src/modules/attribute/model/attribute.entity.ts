@@ -6,6 +6,7 @@ import {
   OneToOne,
   CreateDateColumn,
   UpdateDateColumn,
+  DeleteDateColumn,
 } from 'typeorm';
 
 import { v4 as uuidv4 } from 'uuid';
@@ -27,11 +28,17 @@ export class AttributeEntity {
   @Column()
   hashtag: string;
 
+  @Column({ nullable: true })
+  isActive: boolean;
+
   @CreateDateColumn()
   createdAt: Date;
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  @DeleteDateColumn()
+  deleteAt: Date;
 
   @OneToOne(() => PostEntity, (post: PostEntity) => post.attributes)
   post: PostEntity;
