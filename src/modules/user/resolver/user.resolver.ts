@@ -24,7 +24,6 @@ import { PostEntity } from 'src/modules/post/model/post.entity';
 export class UserResolver {
   constructor(
     private readonly userService: UserService,
-    private readonly postService: PostService,
 
     @InjectRepository(PostEntity)
     private readonly postRepository: Repository<PostEntity>,
@@ -41,8 +40,8 @@ export class UserResolver {
   }
 
   @Query(() => UserIdResponse)
-  userId(@Args('id', { type: () => ID! }) id: string) {
-    const response = this.userService.findById(id);
+  async userId(@Args('id', { type: () => ID! }) id: string) {
+    const response = await this.userService.findById(id);
     return {
       err: response ? 0 : 1,
       msg: response ? 'OK' : 'Failed to get userid',

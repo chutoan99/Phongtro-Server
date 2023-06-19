@@ -246,7 +246,6 @@ export class PostService {
   }
 
   async updatePost(id: string, input: InputUpdatePost) {
-    console.log(input, 'input');
     try {
       const { address, title } = input;
       const postPromise = this.postRepository.update(id, {

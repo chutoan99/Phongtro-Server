@@ -20,7 +20,7 @@ export class UserService {
 
   async findById(id: string) {
     const response = await this.userRepository.findOne({
-      where: { id: id, isActive: true },
+      where: { id: id },
     });
     return response;
   }
