@@ -12,12 +12,16 @@ export class UserService {
   ) {}
 
   async findAll() {
-    const response = await this.userRepository.find();
+    const response = await this.userRepository.find({
+      where: { isActive: true },
+    });
     return response;
   }
 
   async findById(id: string) {
-    const response = await this.userRepository.findOne({ where: { id: id } });
+    const response = await this.userRepository.findOne({
+      where: { id: id, isActive: true },
+    });
     return response;
   }
 }

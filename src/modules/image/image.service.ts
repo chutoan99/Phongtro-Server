@@ -10,7 +10,9 @@ export class ImageService {
     private readonly imageRepository: Repository<ImageEntity>,
   ) {}
   async findAll() {
-    const response = await this.imageRepository.find();
+    const response = await this.imageRepository.find({
+      where: { isActive: true },
+    });
     return response;
   }
 }

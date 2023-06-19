@@ -10,7 +10,9 @@ export class AttributeService {
     private readonly attributeRepository: Repository<AttributeEntity>,
   ) {}
   async findAll() {
-    const response = await this.attributeRepository.find();
+    const response = await this.attributeRepository.find({
+      where: { isActive: true },
+    });
     return response;
   }
 }

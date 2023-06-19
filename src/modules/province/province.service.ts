@@ -11,7 +11,9 @@ export class ProvinceService {
     private readonly provinceRepository: Repository<ProvinceEntity>,
   ) {}
   async findAll() {
-    const response = await this.provinceRepository.find();
+    const response = await this.provinceRepository.find({
+      where: { isActive: true },
+    });
     return response;
   }
 

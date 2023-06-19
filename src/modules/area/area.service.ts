@@ -11,7 +11,9 @@ export class AreaService {
     private readonly areaRepository: Repository<AreaEntity>,
   ) {}
   async findAll() {
-    const response = await this.areaRepository.find();
+    const response = await this.areaRepository.find({
+      where: { isActive: true },
+    });
     return response;
   }
 }

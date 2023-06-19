@@ -10,7 +10,9 @@ export class PriceService {
     private readonly priceRepository: Repository<PriceEntity>,
   ) {}
   async findAll() {
-    const response = await this.priceRepository.find();
+    const response = await this.priceRepository.find({
+      where: { isActive: true },
+    });
     return response;
   }
 }

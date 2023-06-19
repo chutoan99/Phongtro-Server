@@ -10,7 +10,9 @@ export class CategoryService {
     private readonly categoryRepository: Repository<CategoryEntity>,
   ) {}
   async findAll() {
-    const response = await this.categoryRepository.find();
+    const response = await this.categoryRepository.find({
+      where: { isActive: true },
+    });
     return response;
   }
 }

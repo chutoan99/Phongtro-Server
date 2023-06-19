@@ -17,6 +17,7 @@ export class NewPostService {
     const limit = pageSize;
     const offset = pageSize * (pageNumber - 1);
     const [data, totalCount] = await this.postRepository.findAndCount({
+      where: { isActive: true },
       take: limit,
       skip: offset,
     });
