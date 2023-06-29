@@ -35,19 +35,6 @@ import { UserModule } from './modules/user/user.module';
 
 @Module({
   imports: [
-    AreaModule,
-    CategoryModule,
-    PriceModule,
-    ProvinceModule,
-    LabelModule,
-    ImageModule,
-    AttributeModule,
-    OverviewModule,
-    UserModule,
-    PostModule,
-    InsertModule,
-    NewPostModule,
-    AuthModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: true,
@@ -59,11 +46,11 @@ import { UserModule } from './modules/user/user.module';
 
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'containers-us-west-176.railway.app',
-      port: 7039,
-      username: 'postgres',
-      password: 'rZPrPeE2Rv4SyzPaxzMG',
-      database: 'railway',
+      host: process.env.DB_HOST,
+      port: +process.env.DB_PORT,
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
       entities: [
         AreaEntity,
         CategoryEntity,
@@ -93,6 +80,20 @@ import { UserModule } from './modules/user/user.module';
     ]),
 
     ConfigModule.forRoot({ envFilePath: ['.env'] }),
+
+    AreaModule,
+    CategoryModule,
+    PriceModule,
+    ProvinceModule,
+    LabelModule,
+    ImageModule,
+    AttributeModule,
+    OverviewModule,
+    UserModule,
+    PostModule,
+    InsertModule,
+    NewPostModule,
+    AuthModule,
   ],
   controllers: [],
   providers: [],
