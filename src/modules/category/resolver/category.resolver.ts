@@ -9,11 +9,7 @@ export class CategoryResolver {
 
   @Query(() => CategoryResponse)
   category() {
-    const response = this.categoryService.findAll();
-    return {
-      err: response ? 0 : 1,
-      msg: response ? 'OK' : 'Failed to get category.',
-      response,
-    };
+    const response = this.categoryService.GetAllCategory();
+    return response;
   }
 }

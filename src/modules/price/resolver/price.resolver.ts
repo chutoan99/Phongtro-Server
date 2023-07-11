@@ -9,11 +9,7 @@ export class PriceResolver {
 
   @Query(() => PriceResponse)
   price() {
-    const response = this.priceService.findAll();
-    return {
-      err: response ? 0 : 1,
-      msg: response ? 'OK' : 'Failed to get price.',
-      response,
-    };
+    const response = this.priceService.GetAllPrice();
+    return response;
   }
 }

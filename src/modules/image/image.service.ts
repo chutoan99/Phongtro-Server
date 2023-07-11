@@ -9,10 +9,14 @@ export class ImageService {
     @InjectRepository(ImageEntity)
     private readonly imageRepository: Repository<ImageEntity>,
   ) {}
-  async findAll() {
+  async GetAllImage() {
     const response = await this.imageRepository.find({
       where: { isActive: true },
     });
-    return response;
+    return {
+      err: response ? 0 : 1,
+      msg: response ? 'OK' : 'Failed to get image.',
+      response,
+    };
   }
 }

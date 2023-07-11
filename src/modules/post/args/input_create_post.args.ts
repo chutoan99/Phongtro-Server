@@ -1,5 +1,4 @@
 import { Field, Int, InputType } from '@nestjs/graphql';
-
 @InputType()
 export class InputCreatePost {
   @Field(() => String)

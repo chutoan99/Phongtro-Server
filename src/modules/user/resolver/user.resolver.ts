@@ -10,10 +10,8 @@ import {
 import { UserService } from '../user.service';
 import { UserResponse } from '../schema/userResponse.schema';
 import { UserIdResponse } from '../schema/userIdResponse.schema';
-import { PostService } from 'src/modules/post/post.service';
 import { Post } from 'src/modules/post/schema/post.schema';
 import { User } from '../schema/user.schema';
-import { ProfileResponse } from '../schema/profileResponse.schema';
 import { UpdateProfileResponse } from '../schema/updateProfileResponse.schema';
 import { InputUpdateProfile } from '../args/update_profile.args';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -29,41 +27,29 @@ export class UserResolver {
     private readonly postRepository: Repository<PostEntity>,
   ) {}
 
+  // GET ALL USER
   @Query(() => UserResponse)
   user() {
-    const response = this.userService.findAll();
-    return {
-      err: response ? 0 : 1,
-      msg: response ? 'OK' : 'Failed to get user.',
-      response,
-    };
+    const response = this.userService.getAllUser();
+    return response;
   }
 
+  // GET CURRENT USER
   @Query(() => UserIdResponse)
   async userId(@Args('id', { type: () => ID! }) id: string) {
-    const response = await this.userService.findById(id);
-    return {
-      err: response ? 0 : 1,
-      msg: response ? 'OK' : 'Failed to get userid',
-      response,
-    };
-  }
-  @Query(() => ProfileResponse)
-  profile(@Args('id', { type: () => ID! }) id: string) {
-    const response = this.userService.findById(id);
-    return {
-      err: response ? 0 : 1,
-      msg: response ? 'OK' : 'Failed to get user profile',
-      response,
-    };
+    const response = await this.userService.getCurrentUser(id);
+    return response;
   }
 
+  // UPDATE USER
   @Mutation(() => UpdateProfileResponse)
   async updateProfile(
+    @Args('id', { type: () => ID }) id: string,
     @Args('input', { type: () => InputUpdateProfile })
     input: InputUpdateProfile,
-  ) {
-    console.log(input, 'input');
+  ): Promise<UpdateProfileResponse> {
+    const response = await this.userService.updateUser(id, input);
+    return response;
   }
 
   @ResolveField(() => Post)

@@ -302,16 +302,9 @@ export interface UserIdResponse {
     response: User;
 }
 
-export interface ProfileResponse {
-    err: number;
-    msg: string;
-    response: User;
-}
-
 export interface UpdateProfileResponse {
     err: number;
     msg: string;
-    response: User;
 }
 
 export interface IQuery {
@@ -323,14 +316,13 @@ export interface IQuery {
     attribute(): AttributeResponse | Promise<AttributeResponse>;
     user(): UserResponse | Promise<UserResponse>;
     userId(id: string): UserIdResponse | Promise<UserIdResponse>;
-    profile(id: string): ProfileResponse | Promise<ProfileResponse>;
     post(input: InputPost): PostResponse | Promise<PostResponse>;
     postId(id: string): PostIdResponse | Promise<PostIdResponse>;
     newPost(input: InputNewPost): NewPostResponse | Promise<NewPostResponse>;
 }
 
 export interface IMutation {
-    updateProfile(input: InputUpdateProfile): UpdateProfileResponse | Promise<UpdateProfileResponse>;
+    updateProfile(id: string, input: InputUpdateProfile): UpdateProfileResponse | Promise<UpdateProfileResponse>;
     createPost(input: InputCreatePost): CreatePostResponse | Promise<CreatePostResponse>;
     updatePost(id: string, input: InputUpdatePost): UpdatePostResponse | Promise<UpdatePostResponse>;
     deletePost(id: string): DeletePostResponse | Promise<DeletePostResponse>;

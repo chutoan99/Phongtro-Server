@@ -10,10 +10,14 @@ export class AreaService {
     @InjectRepository(AreaEntity)
     private readonly areaRepository: Repository<AreaEntity>,
   ) {}
-  async findAll() {
+  async GetAllArea() {
     const response = await this.areaRepository.find({
       where: { isActive: true },
     });
-    return response;
+    return {
+      err: response ? 0 : 1,
+      msg: response ? 'OK' : 'Failed to get area.',
+      response,
+    };
   }
 }

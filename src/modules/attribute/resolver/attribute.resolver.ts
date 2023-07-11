@@ -9,11 +9,7 @@ export class AttributeResolver {
 
   @Query(() => AttributeResponse)
   attribute() {
-    const response = this.attributeService.findAll();
-    return {
-      err: response ? 0 : 1,
-      msg: response ? 'OK' : 'Failed to get attribute.',
-      response,
-    };
+    const response = this.attributeService.getAllAttribute();
+    return response;
   }
 }

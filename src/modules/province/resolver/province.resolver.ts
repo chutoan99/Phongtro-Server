@@ -9,11 +9,7 @@ export class ProvinceResolver {
 
   @Query(() => ProvinceResponse)
   province() {
-    const response = this.provinceService.findAll();
-    return {
-      err: response ? 0 : 1,
-      msg: response ? 'OK' : 'Failed to get province.',
-      response,
-    };
+    const response = this.provinceService.GetAllProvince();
+    return response;
   }
 }

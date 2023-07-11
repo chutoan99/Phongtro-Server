@@ -9,11 +9,7 @@ export class ImageResolver {
 
   @Query(() => ImageResponse)
   image() {
-    const response = this.imageService.findAll();
-    return {
-      err: response ? 0 : 1,
-      msg: response ? 'OK' : 'Failed to get image.',
-      response,
-    };
+    const response = this.imageService.GetAllImage();
+    return response;
   }
 }

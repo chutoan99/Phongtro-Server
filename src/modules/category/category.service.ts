@@ -9,10 +9,14 @@ export class CategoryService {
     @InjectRepository(CategoryEntity)
     private readonly categoryRepository: Repository<CategoryEntity>,
   ) {}
-  async findAll() {
+  async GetAllCategory() {
     const response = await this.categoryRepository.find({
       where: { isActive: true },
     });
-    return response;
+    return {
+      err: response ? 0 : 1,
+      msg: response ? 'OK' : 'Failed to get category.',
+      response,
+    };
   }
 }

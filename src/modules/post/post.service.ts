@@ -42,7 +42,7 @@ export class PostService {
     private readonly overviewRepository: Repository<OverviewEntity>,
   ) {}
 
-  async findAll(input: InputPost) {
+  async GetAllPost(input: InputPost) {
     const title = input.title;
     const start = input.start ? parseInt(input.start, 10) : undefined;
     const address = input.address;
@@ -102,7 +102,7 @@ export class PostService {
     };
   }
 
-  async findById(id: string) {
+  async GetPostId(id: string) {
     const response = await this.postRepository.findOne({
       where: {
         id: id,
@@ -115,7 +115,7 @@ export class PostService {
     };
   }
 
-  async createPost(input: InputCreatePost) {
+  async CreatePost(input: InputCreatePost) {
     try {
       const userid = input.userid;
       const address = input.address;
@@ -245,7 +245,7 @@ export class PostService {
     }
   }
 
-  async updatePost(id: string, input: InputUpdatePost) {
+  async UpdatePostId(id: string, input: InputUpdatePost) {
     try {
       const { address, title } = input;
       const postPromise = this.postRepository.update(id, {
@@ -263,7 +263,7 @@ export class PostService {
     }
   }
 
-  async deletePost(id: string) {
+  async DeletePostId(id: string) {
     try {
       await this.postRepository.delete(id);
       return {

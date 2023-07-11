@@ -9,10 +9,14 @@ export class PriceService {
     @InjectRepository(PriceEntity)
     private readonly priceRepository: Repository<PriceEntity>,
   ) {}
-  async findAll() {
+  async GetAllPrice() {
     const response = await this.priceRepository.find({
       where: { isActive: true },
     });
-    return response;
+    return {
+      err: response ? 0 : 1,
+      msg: response ? 'OK' : 'Failed to get price.',
+      response,
+    };
   }
 }

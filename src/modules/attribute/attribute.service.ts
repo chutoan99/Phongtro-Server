@@ -9,10 +9,14 @@ export class AttributeService {
     @InjectRepository(AttributeEntity)
     private readonly attributeRepository: Repository<AttributeEntity>,
   ) {}
-  async findAll() {
+  async getAllAttribute() {
     const response = await this.attributeRepository.find({
       where: { isActive: true },
     });
-    return response;
+    return {
+      err: response ? 0 : 1,
+      msg: response ? 'OK' : 'Failed to get attribute.',
+      response,
+    };
   }
 }

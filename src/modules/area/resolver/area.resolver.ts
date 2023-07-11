@@ -9,11 +9,7 @@ export class AreaResolver {
 
   @Query(() => AreaResponse)
   area() {
-    const response = this.areaService.findAll();
-    return {
-      err: response ? 0 : 1,
-      msg: response ? 'OK' : 'Failed to get area.',
-      response,
-    };
+    const response = this.areaService.GetAllArea();
+    return response;
   }
 }
