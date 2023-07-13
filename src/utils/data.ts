@@ -1,8 +1,8 @@
-import * as chothuecanho from '../data/chothuecanho.json';
-import * as chothuematbang from '../data/chothuematbang.json';
-import * as chothuephongtro from '../data/chothuephongtro.json';
-import * as nhachothue from '../data/nhachothue.json';
-import * as timnguoioghep from '../data/timnguoioghep.json';
+import * as chothuecanho from '../../data/chothuecanho.json';
+import * as chothuematbang from '../../data/chothuematbang.json';
+import * as chothuephongtro from '../../data/chothuephongtro.json';
+import * as nhachothue from '../../data/nhachothue.json';
+import * as timnguoioghep from '../../data/timnguoioghep.json';
 import generateCode from './generateCode';
 interface Category {
   code: string;
