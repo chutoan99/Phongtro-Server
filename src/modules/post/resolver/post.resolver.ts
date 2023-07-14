@@ -56,7 +56,7 @@ export class PostResolver {
   }
 
   @Query(() => PostIdResponse)
-  async postId(@Args('id', { type: () => ID }) id: string) {
+  async postId(@Args('postId', { type: () => ID }) id: string) {
     const response = await this.postService.GetPostId(id);
     return response;
   }
@@ -71,7 +71,7 @@ export class PostResolver {
 
   @Mutation(() => UpdatePostResponse)
   async updatePost(
-    @Args('id', { type: () => ID }) id: string,
+    @Args('postId', { type: () => ID }) id: string,
     @Args('input', { type: () => InputUpdatePost }) input: InputUpdatePost,
   ) {
     const response = await this.postService.UpdatePostId(id, input);
@@ -79,7 +79,7 @@ export class PostResolver {
   }
 
   @Mutation(() => DeletePostResponse)
-  async deletePost(@Args('id', { type: () => ID }) id: string) {
+  async deletePost(@Args('postId', { type: () => ID }) id: string) {
     const response = this.postService.DeletePostId(id);
     return response;
   }

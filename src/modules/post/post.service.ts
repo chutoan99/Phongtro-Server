@@ -105,7 +105,7 @@ export class PostService {
   async GetPostId(id: string) {
     const response = await this.postRepository.findOne({
       where: {
-        id: id,
+        id,
       },
     });
     return {
@@ -164,6 +164,7 @@ export class PostService {
         priceCode,
         priceNumber,
         areaNumber,
+        isActive: true,
       });
       await this.postRepository.save(post);
 
@@ -265,7 +266,9 @@ export class PostService {
 
   async DeletePostId(id: string) {
     try {
-      await this.postRepository.delete(id);
+      await this.postRepository.update(id, {
+        isActive: false,
+      });
       return {
         err: 0,
         msg: 'delete post success',

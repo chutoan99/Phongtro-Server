@@ -36,7 +36,7 @@ export class UserResolver {
 
   // GET CURRENT USER
   @Query(() => UserIdResponse)
-  async userId(@Args('id', { type: () => ID! }) id: string) {
+  async userId(@Args('userId', { type: () => ID! }) id: string) {
     const response = await this.userService.getCurrentUser(id);
     return response;
   }
@@ -44,7 +44,7 @@ export class UserResolver {
   // UPDATE USER
   @Mutation(() => UpdateProfileResponse)
   async updateProfile(
-    @Args('id', { type: () => ID }) id: string,
+    @Args('userId', { type: () => ID }) id: string,
     @Args('input', { type: () => InputUpdateProfile })
     input: InputUpdateProfile,
   ): Promise<UpdateProfileResponse> {
@@ -54,7 +54,9 @@ export class UserResolver {
 
   @ResolveField(() => Post)
   async post(@Parent() user: User) {
-    const post = await this.postRepository.find({ where: { userId: user.id } });
+    const post = await this.postRepository.find({
+      where: { userId: user.id, isActive: true },
+    });
     return post;
   }
 }

@@ -41,7 +41,7 @@ export interface InputCreatePost {
     areaCode: string;
     areaNumber: number;
     categoryCode: string;
-    description: string[];
+    description: string;
     images: string[];
     label: string;
     type: string;
@@ -315,17 +315,17 @@ export interface IQuery {
     image(): ImageResponse | Promise<ImageResponse>;
     attribute(): AttributeResponse | Promise<AttributeResponse>;
     user(): UserResponse | Promise<UserResponse>;
-    userId(id: string): UserIdResponse | Promise<UserIdResponse>;
+    userId(userId: string): UserIdResponse | Promise<UserIdResponse>;
     post(input: InputPost): PostResponse | Promise<PostResponse>;
-    postId(id: string): PostIdResponse | Promise<PostIdResponse>;
+    postId(postId: string): PostIdResponse | Promise<PostIdResponse>;
     newPost(input: InputNewPost): NewPostResponse | Promise<NewPostResponse>;
 }
 
 export interface IMutation {
-    updateProfile(id: string, input: InputUpdateProfile): UpdateProfileResponse | Promise<UpdateProfileResponse>;
+    updateProfile(userId: string, input: InputUpdateProfile): UpdateProfileResponse | Promise<UpdateProfileResponse>;
     createPost(input: InputCreatePost): CreatePostResponse | Promise<CreatePostResponse>;
-    updatePost(id: string, input: InputUpdatePost): UpdatePostResponse | Promise<UpdatePostResponse>;
-    deletePost(id: string): DeletePostResponse | Promise<DeletePostResponse>;
+    updatePost(postId: string, input: InputUpdatePost): UpdatePostResponse | Promise<UpdatePostResponse>;
+    deletePost(postId: string): DeletePostResponse | Promise<DeletePostResponse>;
     login(input: InputLogin): LoginResponse | Promise<LoginResponse>;
     register(input: InputRegister): RegisterResponse | Promise<RegisterResponse>;
 }

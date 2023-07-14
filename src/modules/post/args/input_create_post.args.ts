@@ -1,6 +1,11 @@
 import { Field, Int, InputType } from '@nestjs/graphql';
+// import { v4 as uuidv4 } from 'uuid';
+// import { UUID } from '@nestjs/graphql';
 @InputType()
 export class InputCreatePost {
+  // @Field(() => UUID, { defaultValue: uuidv4() })
+  // userid: string;
+
   @Field(() => String)
   userid!: string;
 
@@ -16,8 +21,8 @@ export class InputCreatePost {
   @Field(() => String)
   categoryCode!: string;
 
-  @Field(() => [String])
-  description!: [string];
+  @Field(() => String)
+  description!: string;
 
   @Field(() => [String])
   images!: [string];
