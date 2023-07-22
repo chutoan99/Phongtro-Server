@@ -32,6 +32,7 @@ import { ImageModule } from './modules/image/image.module';
 import { AttributeModule } from './modules/attribute/attribute.module';
 import { OverviewModule } from './modules/overview/overview.module';
 import { UserModule } from './modules/user/user.module';
+import { CrawlModule } from './modules/crawl/crawl.module';
 
 @Module({
   imports: [
@@ -94,6 +95,7 @@ import { UserModule } from './modules/user/user.module';
     InsertModule,
     NewPostModule,
     AuthModule,
+    CrawlModule,
   ],
   controllers: [],
   providers: [],
