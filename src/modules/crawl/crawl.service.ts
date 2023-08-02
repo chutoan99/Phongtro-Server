@@ -3,8 +3,6 @@ import puppeteer from 'puppeteer';
 
 @Injectable()
 export class CrawlService {
-  //   constructor(@InjectBrowser() private readonly browser: Browser) {}
-
   async startBrowser() {
     try {
       const browser = await puppeteer.launch({

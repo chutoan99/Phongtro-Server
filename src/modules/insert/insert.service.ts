@@ -163,7 +163,6 @@ export class InsertService {
               )?.content,
               isActive: true,
             });
-
             await this.postRepository.save({
               id: postId,
               title: item?.header?.title,

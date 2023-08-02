@@ -9,6 +9,9 @@ export class PostResponse {
   @Field()
   msg: string;
 
+  @Field((type) => Int)
+  totalPage: number;
+
   @Field((type) => [Post])
   response: Post[];
 

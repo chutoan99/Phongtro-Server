@@ -27,10 +27,9 @@ import { ProvinceService } from '../province/province.service';
       UserEntity,
     ]),
   ],
-  controllers: [],
   providers: [
-    PostService,
     PostResolver,
+    PostService,
     InputPost,
     InputCreatePost,
     InputUpdatePost,

@@ -91,11 +91,12 @@ export class PostService {
       take: limit,
       skip: offset,
     });
-
+    const totalPage = Math.ceil(+totalCount / +pageSize);
     return {
       err: data ? 0 : 1,
       msg: data ? 'OK' : 'Failed to get post',
       total: totalCount,
+      totalPage: totalPage,
       pageNumber,
       pageSize,
       response: data,

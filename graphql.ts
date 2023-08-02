@@ -142,6 +142,7 @@ export interface Post {
 export interface PostResponse {
     err: number;
     msg: string;
+    totalPage: number;
     response: Post[];
     total: number;
     pageNumber: number;
