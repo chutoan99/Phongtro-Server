@@ -3,12 +3,12 @@ import { Province } from './province.schema';
 
 @ObjectType()
 export class ProvinceResponse {
-  @Field((type) => Int)
+  @Field(() => Int)
   err: number;
 
   @Field()
   msg: string;
 
-  @Field((type) => [Province])
+  @Field(() => [Province])
   response: Province[];
 }

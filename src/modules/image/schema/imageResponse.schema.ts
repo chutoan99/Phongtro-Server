@@ -3,12 +3,12 @@ import { Image } from './image.schema';
 
 @ObjectType()
 export class ImageResponse {
-  @Field((type) => Int)
+  @Field(() => Int)
   err: number;
 
   @Field()
   msg: string;
 
-  @Field((type) => [Image])
+  @Field(() => [Image])
   response: Image[];
 }

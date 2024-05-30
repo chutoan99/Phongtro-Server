@@ -1,8 +1,8 @@
-import { ObjectType, Field, Int, ID } from '@nestjs/graphql';
+import { ObjectType, Field, ID } from '@nestjs/graphql';
 
 @ObjectType()
 export class Overview {
-  @Field((type) => ID)
+  @Field(() => ID)
   id: number;
 
   @Field()
@@ -26,9 +26,9 @@ export class Overview {
   @Field()
   bonus: string;
 
-  @Field((type) => Date)
+  @Field(() => Date)
   createdAt: Date;
 
-  @Field((type) => Date)
+  @Field(() => Date)
   updatedAt: Date;
 }

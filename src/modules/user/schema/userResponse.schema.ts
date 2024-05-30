@@ -3,12 +3,12 @@ import { User } from './user.schema';
 
 @ObjectType()
 export class UserResponse {
-  @Field((type) => Int)
+  @Field(() => Int)
   err: number;
 
   @Field()
   msg: string;
 
-  @Field((type) => [User])
+  @Field(() => [User])
   response: User[];
 }

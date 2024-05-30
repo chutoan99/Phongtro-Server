@@ -36,7 +36,7 @@ export class UserResolver {
 
   // GET CURRENT USER
   @Query(() => UserIdResponse)
-  async userId(@Args('userId', { type: () => ID! }) id: string) {
+  async userId(@Args('userId', { type: () => ID }) id: string) {
     const response = await this.userService.getCurrentUser(id);
     return response;
   }

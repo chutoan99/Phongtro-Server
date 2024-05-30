@@ -50,7 +50,7 @@ export class PostResolver {
   ) {}
 
   @Query(() => PostResponse)
-  async post(@Args('input', { type: () => InputPost! }) input: InputPost) {
+  async post(@Args('input', { type: () => InputPost }) input: InputPost) {
     const response = await this.postService.GetAllPost(input);
     return response;
   }

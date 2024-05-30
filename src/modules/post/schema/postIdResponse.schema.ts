@@ -3,12 +3,12 @@ import { Post } from './post.schema';
 
 @ObjectType()
 export class PostIdResponse {
-  @Field((type) => Int)
+  @Field(() => Int)
   err: number;
 
   @Field()
   msg: string;
 
-  @Field((type) => Post)
+  @Field(() => Post)
   response: Post;
 }

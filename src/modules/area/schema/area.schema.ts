@@ -2,10 +2,10 @@ import { ObjectType, Field, Int } from '@nestjs/graphql';
 
 @ObjectType()
 export class Area {
-  @Field((type) => Int)
+  @Field(() => Int)
   id: number;
 
-  @Field((type) => Int)
+  @Field(() => Int)
   order: number;
 
   @Field()
@@ -14,9 +14,9 @@ export class Area {
   @Field()
   value: string;
 
-  @Field((type) => Date)
+  @Field(() => Date)
   createdAt: Date;
 
-  @Field((type) => Date)
+  @Field(() => Date)
   updatedAt: Date;
 }

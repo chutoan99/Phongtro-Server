@@ -46,13 +46,12 @@ export class UserService {
       return {
         err: 0,
         msg: 'Profile updated successfully',
-        // response: null,
+        response: response,
       };
     } catch (error) {
       return {
         err: -1,
         msg: error,
-        // response: null,
       };
     }
   }

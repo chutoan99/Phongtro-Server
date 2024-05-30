@@ -1,8 +1,8 @@
-import { ObjectType, Field, Int, ID } from '@nestjs/graphql';
+import { ObjectType, Field, ID } from '@nestjs/graphql';
 
 @ObjectType()
 export class Category {
-  @Field((type) => ID)
+  @Field(() => ID)
   id: number;
 
   @Field()
@@ -20,9 +20,9 @@ export class Category {
   @Field()
   path: string;
 
-  @Field((type) => Date)
+  @Field(() => Date)
   createdAt: Date;
 
-  @Field((type) => Date)
+  @Field(() => Date)
   updatedAt: Date;
 }

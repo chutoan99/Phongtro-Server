@@ -3,24 +3,24 @@ import { Post } from './post.schema';
 
 @ObjectType()
 export class PostResponse {
-  @Field((type) => Int)
+  @Field(() => Int)
   err: number;
 
   @Field()
   msg: string;
 
-  @Field((type) => Int)
+  @Field(() => Int)
   totalPage: number;
 
-  @Field((type) => [Post])
+  @Field(() => [Post])
   response: Post[];
 
-  @Field((type) => Int)
+  @Field(() => Int)
   total: number;
 
-  @Field((type) => Int)
+  @Field(() => Int)
   pageNumber: number;
 
-  @Field((type) => Int)
+  @Field(() => Int)
   pageSize: number;
 }

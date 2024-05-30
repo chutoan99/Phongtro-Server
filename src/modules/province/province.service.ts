@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ProvinceEntity } from './model/province.entity';
-import generateCode from 'src/utils/generateCode';
 
 @Injectable()
 export class ProvinceService {

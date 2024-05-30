@@ -1,9 +1,8 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
-import { Post } from './post.schema';
 
 @ObjectType()
 export class DeletePostResponse {
-  @Field((type) => Int)
+  @Field(() => Int)
   err: number;
 
   @Field()

@@ -6,7 +6,7 @@ import { User } from 'src/modules/user/schema/user.schema';
 
 @ObjectType()
 export class Post {
-  @Field((type) => ID, { nullable: true })
+  @Field(() => ID, { nullable: true })
   id: number;
 
   @Field({ nullable: true })
@@ -48,27 +48,27 @@ export class Post {
   @Field({ nullable: true })
   imagesId: string;
 
-  @Field((type) => Float, { nullable: true })
+  @Field(() => Float, { nullable: true })
   priceNumber: number;
 
-  @Field((type) => Float, { nullable: true })
+  @Field(() => Float, { nullable: true })
   areaNumber: number;
 
-  @Field((type) => Date, { nullable: true })
+  @Field(() => Date, { nullable: true })
   createdAt: Date;
 
-  @Field((type) => Date, { nullable: true })
+  @Field(() => Date, { nullable: true })
   updatedAt: Date;
 
-  @Field((type) => User)
+  @Field(() => User)
   user: User;
 
-  @Field((type) => Image)
+  @Field(() => Image)
   listImage: Image;
 
-  @Field((type) => Attribute)
+  @Field(() => Attribute)
   attributes: Attribute;
 
-  @Field((type) => Overview)
+  @Field(() => Overview)
   overviews: Overview;
 }

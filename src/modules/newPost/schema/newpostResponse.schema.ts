@@ -3,21 +3,21 @@ import { NewPost } from './newpost.schema';
 
 @ObjectType()
 export class NewPostResponse {
-  @Field((type) => Int)
+  @Field(() => Int)
   err: number;
 
   @Field()
   msg: string;
 
-  @Field((type) => [NewPost])
+  @Field(() => [NewPost])
   response: NewPost[];
 
-  @Field((type) => Int)
+  @Field(() => Int)
   total: number;
 
-  @Field((type) => Int)
+  @Field(() => Int)
   pageNumber: number;
 
-  @Field((type) => Int)
+  @Field(() => Int)
   pageSize: number;
 }

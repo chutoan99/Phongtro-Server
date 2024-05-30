@@ -1,9 +1,9 @@
-import { ObjectType, Field, Int, ID } from '@nestjs/graphql';
+import { ObjectType, Field, ID } from '@nestjs/graphql';
 import { Post } from 'src/modules/post/schema/post.schema';
 
 @ObjectType()
 export class User {
-  @Field((type) => ID)
+  @Field(() => ID)
   id: string;
 
   @Field()
@@ -27,9 +27,9 @@ export class User {
   @Field(() => [Post])
   post: [Post];
 
-  @Field((type) => Date)
+  @Field(() => Date)
   createdAt: Date;
 
-  @Field((type) => Date)
+  @Field(() => Date)
   updatedAt: Date;
 }

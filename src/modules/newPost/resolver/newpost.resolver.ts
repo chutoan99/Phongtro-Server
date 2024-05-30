@@ -16,7 +16,7 @@ import { NewPost } from '../schema/newpost.schema';
 @Resolver(() => NewPost)
 export class NewPostResolver {
   constructor(
-    private readonly NewPostService: NewPostService,
+    private readonly newPostService: NewPostService,
 
     @InjectRepository(UserEntity)
     private readonly userRepository: Repository<UserEntity>,
@@ -33,9 +33,9 @@ export class NewPostResolver {
 
   @Query(() => NewPostResponse)
   async newPost(
-    @Args('input', { type: () => InputNewPost! }) input: InputNewPost,
+    @Args('input', { type: () => InputNewPost }) input: InputNewPost,
   ) {
-    const response = await this.NewPostService.findAllNewPost(input);
+    const response = await this.newPostService.findAllNewPost(input);
     return response;
   }
 

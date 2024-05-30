@@ -3,12 +3,12 @@ import { Area } from './area.schema';
 
 @ObjectType()
 export class AreaResponse {
-  @Field((type) => Int)
+  @Field(() => Int)
   err: number;
 
   @Field()
   msg: string;
 
-  @Field((type) => [Area])
+  @Field(() => [Area])
   response: Area[];
 }

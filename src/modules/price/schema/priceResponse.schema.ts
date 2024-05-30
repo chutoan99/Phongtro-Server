@@ -3,12 +3,12 @@ import { Price } from './price.schema';
 
 @ObjectType()
 export class PriceResponse {
-  @Field((type) => Int)
+  @Field(() => Int)
   err: number;
 
   @Field()
   msg: string;
 
-  @Field((type) => [Price])
+  @Field(() => [Price])
   response: Price[];
 }

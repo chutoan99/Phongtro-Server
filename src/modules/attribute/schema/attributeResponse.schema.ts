@@ -3,12 +3,12 @@ import { Attribute } from './attribute.schema';
 
 @ObjectType()
 export class AttributeResponse {
-  @Field((type) => Int)
+  @Field(() => Int)
   err: number;
 
   @Field()
   msg: string;
 
-  @Field((type) => [Attribute])
+  @Field(() => [Attribute])
   response: Attribute[];
 }

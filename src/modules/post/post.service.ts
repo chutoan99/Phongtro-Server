@@ -1,13 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PostEntity } from './model/post.entity';
-import {
-  Repository,
-  Between,
-  FindOperator,
-  OrderByCondition,
-  ILike,
-} from 'typeorm';
+import { Repository, Between, FindOperator, ILike } from 'typeorm';
 import { InputPost } from './args/input_post.args';
 import { InputCreatePost } from './args/input_create_post.args';
 import { InputUpdatePost } from './args/input_update_post.args';
@@ -79,10 +73,11 @@ export class PostService {
     const defaultOrderBy = 'createdAt';
     const defaultDirection = 'DESC';
 
-    const order: OrderByCondition = {
+    const order = {
       [orderBy || defaultOrderBy]:
         columnToOrderCondition[direction || defaultDirection],
     };
+    console.log(order);
 
     const limit = pageSize;
     const offset = pageSize * (pageNumber - 1);

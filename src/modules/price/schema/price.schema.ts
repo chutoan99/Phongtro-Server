@@ -2,10 +2,10 @@ import { ObjectType, Field, Int, ID } from '@nestjs/graphql';
 
 @ObjectType()
 export class Price {
-  @Field((type) => ID)
+  @Field(() => ID)
   id: number;
 
-  @Field((type) => Int)
+  @Field(() => Int)
   order: number;
 
   @Field()
@@ -14,9 +14,9 @@ export class Price {
   @Field()
   value: string;
 
-  @Field((type) => Date)
+  @Field(() => Date)
   createdAt: Date;
 
-  @Field((type) => Date)
+  @Field(() => Date)
   updatedAt: Date;
 }

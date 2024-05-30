@@ -2,7 +2,7 @@ import { ObjectType, Field, Int } from '@nestjs/graphql';
 
 @ObjectType()
 export class RegisterResponse {
-  @Field((type) => Int)
+  @Field(() => Int)
   err: number;
 
   @Field()

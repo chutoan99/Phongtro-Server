@@ -3,12 +3,12 @@ import { Category } from './category.schema';
 
 @ObjectType()
 export class CategoryResponse {
-  @Field((type) => Int)
+  @Field(() => Int)
   err: number;
 
   @Field()
   msg: string;
 
-  @Field((type) => [Category])
+  @Field(() => [Category])
   response: Category[];
 }
