@@ -187,6 +187,23 @@ export interface User {
     updatedAt: DateTime;
 }
 
+export interface UserSchema {
+    err: number;
+    msg: string;
+    response: User[];
+}
+
+export interface UserIdSchema {
+    err: number;
+    msg: string;
+    response: User;
+}
+
+export interface UpdateUserSchema {
+    err: number;
+    msg: string;
+}
+
 export interface Post {
     id?: Nullable<string>;
     title?: Nullable<string>;
@@ -210,23 +227,6 @@ export interface Post {
     listImage: Image;
     attributes: Attribute;
     overviews: Overview;
-}
-
-export interface UserResponse {
-    err: number;
-    msg: string;
-    response: User[];
-}
-
-export interface UserIdResponse {
-    err: number;
-    msg: string;
-    response: User;
-}
-
-export interface UpdateProfileResponse {
-    err: number;
-    msg: string;
 }
 
 export interface PostResponse {
@@ -315,15 +315,15 @@ export interface IQuery {
     province(): ProvinceSchema | Promise<ProvinceSchema>;
     image(): ImageSchema | Promise<ImageSchema>;
     attribute(): AttributeSchema | Promise<AttributeSchema>;
-    user(): UserResponse | Promise<UserResponse>;
-    userId(userId: string): UserIdResponse | Promise<UserIdResponse>;
+    user(): UserSchema | Promise<UserSchema>;
+    userId(userId: string): UserIdSchema | Promise<UserIdSchema>;
     post(input: InputPost): PostResponse | Promise<PostResponse>;
     postId(postId: string): PostIdResponse | Promise<PostIdResponse>;
     newPost(input: InputNewPost): NewPostSchema | Promise<NewPostSchema>;
 }
 
 export interface IMutation {
-    updateProfile(userId: string, input: InputUpdateProfile): UpdateProfileResponse | Promise<UpdateProfileResponse>;
+    updateProfile(userId: string, input: InputUpdateProfile): UpdateUserSchema | Promise<UpdateUserSchema>;
     createPost(input: InputCreatePost): CreatePostResponse | Promise<CreatePostResponse>;
     updatePost(postId: string, input: InputUpdatePost): UpdatePostResponse | Promise<UpdatePostResponse>;
     deletePost(postId: string): DeletePostResponse | Promise<DeletePostResponse>;

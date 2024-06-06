@@ -4,11 +4,8 @@ import { Post } from 'src/modules/post/post.schema'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 import { PostEntity } from 'src/modules/post/post.entity'
-import { User } from './user.schema'
-import { UserResponse } from './userResponse.schema'
-import { UserIdResponse } from './userIdResponse.schema'
-import { UpdateProfileResponse } from './updateProfileResponse.schema'
-import { InputUpdateProfile } from './update_profile.args'
+import { UpdateUserSchema, User, UserIdSchema, UserSchema } from './user.schema'
+import { InputUpdateProfile } from './user.args'
 
 @Resolver(() => User)
 export class UserResolver {
@@ -19,27 +16,24 @@ export class UserResolver {
 		private readonly _postRepository: Repository<PostEntity>
 	) {}
 
-	// GET ALL USER
-	@Query(() => UserResponse)
+	@Query(() => UserSchema)
 	user() {
 		const response = this._userService.getAllUser()
 		return response
 	}
 
-	// GET CURRENT USER
-	@Query(() => UserIdResponse)
+	@Query(() => UserIdSchema)
 	async userId(@Args('userId', { type: () => ID }) id: string) {
 		const response = await this._userService.getCurrentUser(id)
 		return response
 	}
 
-	// UPDATE USER
-	@Mutation(() => UpdateProfileResponse)
+	@Mutation(() => UpdateUserSchema)
 	async updateProfile(
 		@Args('userId', { type: () => ID }) id: string,
 		@Args('input', { type: () => InputUpdateProfile })
 		input: InputUpdateProfile
-	): Promise<UpdateProfileResponse> {
+	): Promise<UpdateUserSchema> {
 		const response = await this._userService.updateUser(id, input)
 		return response
 	}

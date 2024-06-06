@@ -1,4 +1,4 @@
-import { ObjectType, Field, ID } from '@nestjs/graphql'
+import { ObjectType, Field, ID, Int } from '@nestjs/graphql'
 import { Post } from 'src/modules/post/post.schema'
 
 @ObjectType()
@@ -32,4 +32,39 @@ export class User {
 
 	@Field(() => Date)
 	updatedAt: Date
+}
+@ObjectType()
+export class UserSchema {
+	@Field(() => Int)
+	err: number
+
+	@Field()
+	msg: string
+
+	@Field(() => [User])
+	response: User[]
+}
+
+@ObjectType()
+export class UserIdSchema {
+	@Field(() => Int)
+	err: number
+
+	@Field()
+	msg: string
+
+	@Field(() => User)
+	response: User
+}
+
+@ObjectType()
+export class UpdateUserSchema {
+	@Field(() => Int)
+	err: number
+
+	@Field()
+	msg: string
+
+	// @Field(() => User)
+	// response: User;
 }

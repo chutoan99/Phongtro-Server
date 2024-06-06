@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 
 import { UserEntity } from './user.entity'
-import { InputUpdateProfile } from './update_profile.args'
+import { InputUpdateProfile } from './user.args'
 
 @Injectable()
 export class UserService {
