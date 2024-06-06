@@ -31,5 +31,3 @@ export class ImageSchema {
 	@Field(() => [Image])
 	response: Image[]
 }
-
-

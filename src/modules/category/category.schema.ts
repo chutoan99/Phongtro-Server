@@ -37,5 +37,3 @@ export class CategorySchema {
 	@Field(() => [Category])
 	response: Category[]
 }
-
-

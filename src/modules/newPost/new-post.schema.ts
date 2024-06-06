@@ -91,5 +91,3 @@ export class NewPostSchema {
 	@Field(() => Int)
 	pageSize: number
 }
-
-

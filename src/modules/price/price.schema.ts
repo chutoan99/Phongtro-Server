@@ -30,5 +30,3 @@ export class PriceSchema {
 	@Field(() => [Price])
 	response: Price[]
 }
-
-
