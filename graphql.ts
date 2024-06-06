@@ -69,161 +69,6 @@ export interface InputRegister {
     password: string;
 }
 
-export interface AttributeResponse {
-    err: number;
-    msg: string;
-    response: Attribute[];
-}
-
-export interface Attribute {
-    id: string;
-    price: string;
-    acreage: string;
-    published: string;
-    hashtag: string;
-    createdAt: DateTime;
-    updatedAt: DateTime;
-}
-
-export interface Image {
-    id: string;
-    total: number;
-    image: string;
-    postImg?: Nullable<string>;
-    createdAt: DateTime;
-    updatedAt: DateTime;
-}
-
-export interface Overview {
-    id: string;
-    code: string;
-    area: string;
-    type: string;
-    target: string;
-    created: string;
-    expired: string;
-    bonus: string;
-    createdAt: DateTime;
-    updatedAt: DateTime;
-}
-
-export interface Post {
-    id?: Nullable<string>;
-    title?: Nullable<string>;
-    start?: Nullable<string>;
-    labelCode?: Nullable<string>;
-    address?: Nullable<string>;
-    attributesId?: Nullable<string>;
-    categoryCode?: Nullable<string>;
-    priceCode?: Nullable<string>;
-    areaCode?: Nullable<string>;
-    provinceCode?: Nullable<string>;
-    description?: Nullable<string>;
-    userId?: Nullable<string>;
-    overviewId?: Nullable<string>;
-    imagesId?: Nullable<string>;
-    priceNumber?: Nullable<number>;
-    areaNumber?: Nullable<number>;
-    createdAt?: Nullable<DateTime>;
-    updatedAt?: Nullable<DateTime>;
-    user: User;
-    listImage: Image;
-    attributes: Attribute;
-    overviews: Overview;
-}
-
-export interface User {
-    id: string;
-    name: string;
-    password: string;
-    avatar?: Nullable<string>;
-    phone?: Nullable<string>;
-    zalo?: Nullable<string>;
-    file?: Nullable<string>;
-    post: Post[];
-    createdAt: DateTime;
-    updatedAt: DateTime;
-}
-
-export interface PostResponse {
-    err: number;
-    msg: string;
-    totalPage: number;
-    response: Post[];
-    total: number;
-    pageNumber: number;
-    pageSize: number;
-}
-
-export interface PostIdResponse {
-    err: number;
-    msg: string;
-    response: Post;
-}
-
-export interface CreatePostResponse {
-    err: number;
-    msg: string;
-}
-
-export interface UpdatePostResponse {
-    err: number;
-    msg: string;
-    response: Post;
-}
-
-export interface DeletePostResponse {
-    err: number;
-    msg: string;
-}
-
-export interface LoginResponse {
-    err: number;
-    msg: string;
-    token?: Nullable<string>;
-    response: User;
-}
-
-export interface RegisterResponse {
-    err: number;
-    msg: string;
-    token?: Nullable<string>;
-}
-
-export interface NewPost {
-    id?: Nullable<string>;
-    title?: Nullable<string>;
-    start?: Nullable<string>;
-    labelCode?: Nullable<string>;
-    address?: Nullable<string>;
-    attributesId?: Nullable<string>;
-    categoryCode?: Nullable<string>;
-    priceCode?: Nullable<string>;
-    areaCode?: Nullable<string>;
-    provinceCode?: Nullable<string>;
-    description?: Nullable<string>;
-    userId?: Nullable<string>;
-    overviewId?: Nullable<string>;
-    imagesId?: Nullable<string>;
-    priceNumber?: Nullable<number>;
-    areaNumber?: Nullable<number>;
-    createdAt?: Nullable<DateTime>;
-    updatedAt?: Nullable<DateTime>;
-    user: User;
-    listImage: Image;
-    attributes: Attribute;
-    overviews: Overview;
-}
-
-export interface NewPostResponse {
-    err: number;
-    msg: string;
-    response: NewPost[];
-    total: number;
-    pageNumber: number;
-    pageSize: number;
-}
-
 export interface AreaResponse {
     err: number;
     msg: string;
@@ -285,10 +130,86 @@ export interface ProvinceResponse {
     response: Province[];
 }
 
+export interface Image {
+    id: string;
+    total: number;
+    image: string;
+    postImg?: Nullable<string>;
+    createdAt: DateTime;
+    updatedAt: DateTime;
+}
+
 export interface ImageResponse {
     err: number;
     msg: string;
     response: Image[];
+}
+
+export interface AttributeResponse {
+    err: number;
+    msg: string;
+    response: Attribute[];
+}
+
+export interface Attribute {
+    id: string;
+    price: string;
+    acreage: string;
+    published: string;
+    hashtag: string;
+    createdAt: DateTime;
+    updatedAt: DateTime;
+}
+
+export interface Overview {
+    id: string;
+    code: string;
+    area: string;
+    type: string;
+    target: string;
+    created: string;
+    expired: string;
+    bonus: string;
+    createdAt: DateTime;
+    updatedAt: DateTime;
+}
+
+export interface User {
+    id: string;
+    name: string;
+    password: string;
+    avatar?: Nullable<string>;
+    phone?: Nullable<string>;
+    zalo?: Nullable<string>;
+    file?: Nullable<string>;
+    post: Post[];
+    createdAt: DateTime;
+    updatedAt: DateTime;
+}
+
+export interface Post {
+    id?: Nullable<string>;
+    title?: Nullable<string>;
+    start?: Nullable<string>;
+    labelCode?: Nullable<string>;
+    address?: Nullable<string>;
+    attributesId?: Nullable<string>;
+    categoryCode?: Nullable<string>;
+    priceCode?: Nullable<string>;
+    areaCode?: Nullable<string>;
+    provinceCode?: Nullable<string>;
+    description?: Nullable<string>;
+    userId?: Nullable<string>;
+    overviewId?: Nullable<string>;
+    imagesId?: Nullable<string>;
+    priceNumber?: Nullable<number>;
+    areaNumber?: Nullable<number>;
+    createdAt?: Nullable<DateTime>;
+    updatedAt?: Nullable<DateTime>;
+    user: User;
+    listImage: Image;
+    attributes: Attribute;
+    overviews: Overview;
 }
 
 export interface UserResponse {
@@ -306,6 +227,85 @@ export interface UserIdResponse {
 export interface UpdateProfileResponse {
     err: number;
     msg: string;
+}
+
+export interface PostResponse {
+    err: number;
+    msg: string;
+    totalPage: number;
+    response: Post[];
+    total: number;
+    pageNumber: number;
+    pageSize: number;
+}
+
+export interface PostIdResponse {
+    err: number;
+    msg: string;
+    response: Post;
+}
+
+export interface CreatePostResponse {
+    err: number;
+    msg: string;
+}
+
+export interface UpdatePostResponse {
+    err: number;
+    msg: string;
+    response: Post;
+}
+
+export interface DeletePostResponse {
+    err: number;
+    msg: string;
+}
+
+export interface NewPost {
+    id?: Nullable<string>;
+    title?: Nullable<string>;
+    start?: Nullable<string>;
+    labelCode?: Nullable<string>;
+    address?: Nullable<string>;
+    attributesId?: Nullable<string>;
+    categoryCode?: Nullable<string>;
+    priceCode?: Nullable<string>;
+    areaCode?: Nullable<string>;
+    provinceCode?: Nullable<string>;
+    description?: Nullable<string>;
+    userId?: Nullable<string>;
+    overviewId?: Nullable<string>;
+    imagesId?: Nullable<string>;
+    priceNumber?: Nullable<number>;
+    areaNumber?: Nullable<number>;
+    createdAt?: Nullable<DateTime>;
+    updatedAt?: Nullable<DateTime>;
+    user: User;
+    listImage: Image;
+    attributes: Attribute;
+    overviews: Overview;
+}
+
+export interface NewPostResponse {
+    err: number;
+    msg: string;
+    response: NewPost[];
+    total: number;
+    pageNumber: number;
+    pageSize: number;
+}
+
+export interface LoginResponse {
+    err: number;
+    msg: string;
+    token?: Nullable<string>;
+    response: User;
+}
+
+export interface RegisterResponse {
+    err: number;
+    msg: string;
+    token?: Nullable<string>;
 }
 
 export interface IQuery {

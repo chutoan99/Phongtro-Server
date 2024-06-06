@@ -1,14 +1,14 @@
-import { ObjectType, Field, Int } from '@nestjs/graphql';
-import { Price } from './price.schema';
+import { ObjectType, Field, Int } from '@nestjs/graphql'
+import { Price } from './price.schema'
 
 @ObjectType()
 export class PriceResponse {
-  @Field(() => Int)
-  err: number;
+	@Field(() => Int)
+	err: number
 
-  @Field()
-  msg: string;
+	@Field()
+	msg: string
 
-  @Field(() => [Price])
-  response: Price[];
+	@Field(() => [Price])
+	response: Price[]
 }

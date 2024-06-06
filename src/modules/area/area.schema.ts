@@ -1,36 +1,34 @@
-import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { ObjectType, Field, Int } from '@nestjs/graphql'
 
 @ObjectType()
 export class AreaResponse {
-  @Field(() => Int)
-  err: number;
+	@Field(() => Int)
+	err: number
 
-  @Field()
-  msg: string;
+	@Field()
+	msg: string
 
-  @Field(() => [Area])
-  response: Area[];
+	@Field(() => [Area])
+	response: Area[]
 }
-
-
 
 @ObjectType()
 export class Area {
-  @Field(() => Int)
-  id: number;
+	@Field(() => Int)
+	id: number
 
-  @Field(() => Int)
-  order: number;
+	@Field(() => Int)
+	order: number
 
-  @Field()
-  code: string;
+	@Field()
+	code: string
 
-  @Field()
-  value: string;
+	@Field()
+	value: string
 
-  @Field(() => Date)
-  createdAt: Date;
+	@Field(() => Date)
+	createdAt: Date
 
-  @Field(() => Date)
-  updatedAt: Date;
+	@Field(() => Date)
+	updatedAt: Date
 }

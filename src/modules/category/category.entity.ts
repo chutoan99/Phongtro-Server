@@ -1,41 +1,34 @@
-import {
-  Entity,
-  Column,
-  PrimaryGeneratedColumn,
-  CreateDateColumn,
-  UpdateDateColumn,
-  DeleteDateColumn,
-} from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from 'typeorm'
 
 @Entity('Categories')
 export class CategoryEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
+	@PrimaryGeneratedColumn()
+	id: number
 
-  @Column()
-  code: string;
+	@Column()
+	code: string
 
-  @Column()
-  value: string;
+	@Column()
+	value: string
 
-  @Column()
-  header: string;
+	@Column()
+	header: string
 
-  @Column()
-  subHeader: string;
+	@Column()
+	subHeader: string
 
-  @Column()
-  path: string;
+	@Column()
+	path: string
 
-  @Column({ nullable: true })
-  isActive: boolean;
+	@Column({ nullable: true })
+	isActive: boolean
 
-  @CreateDateColumn()
-  createdAt: Date;
+	@CreateDateColumn()
+	createdAt: Date
 
-  @UpdateDateColumn()
-  updatedAt: Date;
+	@UpdateDateColumn()
+	updatedAt: Date
 
-  @DeleteDateColumn()
-  deleteAt: Date;
+	@DeleteDateColumn()
+	deleteAt: Date
 }

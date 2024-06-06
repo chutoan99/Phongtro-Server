@@ -1,12 +1,12 @@
-import { Injectable } from '@nestjs/common';
-import { OverviewEntity } from './overview.entity';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Injectable } from '@nestjs/common'
+import { OverviewEntity } from './overview.entity'
+import { InjectRepository } from '@nestjs/typeorm'
+import { Repository } from 'typeorm'
 
 @Injectable()
 export class OverviewService {
-  constructor(
-    @InjectRepository(OverviewEntity)
-    private readonly overviewRepository: Repository<OverviewEntity>,
-  ) {}
+	constructor(
+		@InjectRepository(OverviewEntity)
+		private readonly overviewRepository: Repository<OverviewEntity>
+	) {}
 }

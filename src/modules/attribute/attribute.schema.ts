@@ -1,38 +1,37 @@
-import { ObjectType, Field, ID, Int } from '@nestjs/graphql';
-
+import { ObjectType, Field, ID, Int } from '@nestjs/graphql'
 
 @ObjectType()
 export class AttributeResponse {
-  @Field(() => Int)
-  err: number;
+	@Field(() => Int)
+	err: number
 
-  @Field()
-  msg: string;
+	@Field()
+	msg: string
 
-  @Field(() => [Attribute])
-  response: Attribute[];
+	@Field(() => [Attribute])
+	response: Attribute[]
 }
 
 @ObjectType()
 export class Attribute {
-  @Field(() => ID)
-  id: number;
+	@Field(() => ID)
+	id: number
 
-  @Field()
-  price: string;
+	@Field()
+	price: string
 
-  @Field()
-  acreage: string;
+	@Field()
+	acreage: string
 
-  @Field()
-  published: string;
+	@Field()
+	published: string
 
-  @Field()
-  hashtag: string;
+	@Field()
+	hashtag: string
 
-  @Field(() => Date)
-  createdAt: Date;
+	@Field(() => Date)
+	createdAt: Date
 
-  @Field(() => Date)
-  updatedAt: Date;
+	@Field(() => Date)
+	updatedAt: Date
 }

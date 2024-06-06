@@ -1,14 +1,14 @@
-import { ObjectType, Field, Int } from '@nestjs/graphql';
-import { Post } from './post.schema';
+import { ObjectType, Field, Int } from '@nestjs/graphql'
+import { Post } from './post.schema'
 
 @ObjectType()
 export class PostIdResponse {
-  @Field(() => Int)
-  err: number;
+	@Field(() => Int)
+	err: number
 
-  @Field()
-  msg: string;
+	@Field()
+	msg: string
 
-  @Field(() => Post)
-  response: Post;
+	@Field(() => Post)
+	response: Post
 }

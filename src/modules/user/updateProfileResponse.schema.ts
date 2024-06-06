@@ -1,13 +1,13 @@
-import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { ObjectType, Field, Int } from '@nestjs/graphql'
 
 @ObjectType()
 export class UpdateProfileResponse {
-  @Field(() => Int)
-  err: number;
+	@Field(() => Int)
+	err: number
 
-  @Field()
-  msg: string;
+	@Field()
+	msg: string
 
-  // @Field(() => User)
-  // response: User;
+	// @Field(() => User)
+	// response: User;
 }

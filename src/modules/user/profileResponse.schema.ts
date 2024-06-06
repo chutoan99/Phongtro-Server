@@ -1,14 +1,14 @@
-import { ObjectType, Field, Int } from '@nestjs/graphql';
-import { User } from './user.schema';
+import { ObjectType, Field, Int } from '@nestjs/graphql'
+import { User } from './user.schema'
 
 @ObjectType()
 export class ProfileResponse {
-  @Field(() => Int)
-  err: number;
+	@Field(() => Int)
+	err: number
 
-  @Field()
-  msg: string;
+	@Field()
+	msg: string
 
-  @Field(() => User)
-  response: User;
+	@Field(() => User)
+	response: User
 }

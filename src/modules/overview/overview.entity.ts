@@ -1,54 +1,46 @@
-import { PostEntity } from 'src/modules/post/post.entity';
-import {
-  Entity,
-  Column,
-  OneToOne,
-  CreateDateColumn,
-  UpdateDateColumn,
-  PrimaryColumn,
-  DeleteDateColumn,
-} from 'typeorm';
+import { PostEntity } from 'src/modules/post/post.entity'
+import { Entity, Column, OneToOne, CreateDateColumn, UpdateDateColumn, PrimaryColumn, DeleteDateColumn } from 'typeorm'
 
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid'
 
 @Entity('Overviews')
 export class OverviewEntity {
-  @PrimaryColumn('uuid', { default: uuidv4() })
-  id: string;
+	@PrimaryColumn('uuid', { default: uuidv4() })
+	id: string
 
-  @Column()
-  code: string;
+	@Column()
+	code: string
 
-  @Column()
-  area: string;
+	@Column()
+	area: string
 
-  @Column()
-  type: string;
+	@Column()
+	type: string
 
-  @Column()
-  target: string;
+	@Column()
+	target: string
 
-  @Column()
-  created: string;
+	@Column()
+	created: string
 
-  @Column()
-  expired: string;
+	@Column()
+	expired: string
 
-  @Column()
-  bonus: string;
+	@Column()
+	bonus: string
 
-  @Column({ nullable: true })
-  isActive: boolean;
+	@Column({ nullable: true })
+	isActive: boolean
 
-  @CreateDateColumn()
-  createdAt: Date;
+	@CreateDateColumn()
+	createdAt: Date
 
-  @UpdateDateColumn()
-  updatedAt: Date;
+	@UpdateDateColumn()
+	updatedAt: Date
 
-  @DeleteDateColumn()
-  deleteAt: Date;
+	@DeleteDateColumn()
+	deleteAt: Date
 
-  @OneToOne(() => PostEntity, (post: PostEntity) => post.overviews)
-  post: PostEntity;
+	@OneToOne(() => PostEntity, (post: PostEntity) => post.overviews)
+	post: PostEntity
 }

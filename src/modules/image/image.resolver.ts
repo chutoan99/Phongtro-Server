@@ -1,15 +1,15 @@
-import { Query, Resolver } from '@nestjs/graphql';
+import { Query, Resolver } from '@nestjs/graphql'
 
-import { ImageService } from './image.service';
-import { ImageResponse } from './imageResponse.schema';
+import { ImageService } from './image.service'
+import { ImageResponse } from './imageResponse.schema'
 
 @Resolver()
 export class ImageResolver {
-  constructor(private readonly _imageService: ImageService) {}
+	constructor(private readonly _imageService: ImageService) {}
 
-  @Query(() => ImageResponse)
-  image() {
-    const response = this._imageService.GetAllImage();
-    return response;
-  }
+	@Query(() => ImageResponse)
+	image() {
+		const response = this._imageService.GetAllImage()
+		return response
+	}
 }

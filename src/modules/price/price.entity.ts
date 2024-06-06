@@ -1,35 +1,28 @@
-import {
-  Entity,
-  Column,
-  PrimaryGeneratedColumn,
-  CreateDateColumn,
-  UpdateDateColumn,
-  DeleteDateColumn,
-} from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from 'typeorm'
 
 @Entity('Prices')
 export class PriceEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
+	@PrimaryGeneratedColumn()
+	id: number
 
-  @Column()
-  order: number;
+	@Column()
+	order: number
 
-  @Column()
-  code: string;
+	@Column()
+	code: string
 
-  @Column()
-  value: string;
+	@Column()
+	value: string
 
-  @Column({ nullable: true })
-  isActive: boolean;
+	@Column({ nullable: true })
+	isActive: boolean
 
-  @CreateDateColumn()
-  createdAt: Date;
+	@CreateDateColumn()
+	createdAt: Date
 
-  @UpdateDateColumn()
-  updatedAt: Date;
+	@UpdateDateColumn()
+	updatedAt: Date
 
-  @DeleteDateColumn()
-  deleteAt: Date;
+	@DeleteDateColumn()
+	deleteAt: Date
 }

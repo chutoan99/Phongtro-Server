@@ -1,9 +1,9 @@
-import { Module } from '@nestjs/common';
+import { Module } from '@nestjs/common'
 
-import { LabelService } from './label.service';
+import { LabelService } from './label.service'
 
 @Module({
-  controllers: [],
-  providers: [LabelService],
+	controllers: [],
+	providers: [LabelService]
 })
 export class LabelModule {}
