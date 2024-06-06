@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 
 import { ProvinceService } from './province.service';
-import { ProvinceResolver } from './resolver/province.resolver';
-import { ProvinceEntity } from './model/province.entity';
+import { ProvinceResolver } from './province.resolver';
+import { ProvinceEntity } from './province.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({

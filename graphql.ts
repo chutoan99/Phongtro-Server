@@ -69,6 +69,12 @@ export interface InputRegister {
     password: string;
 }
 
+export interface AttributeResponse {
+    err: number;
+    msg: string;
+    response: Attribute[];
+}
+
 export interface Attribute {
     id: string;
     price: string;
@@ -101,19 +107,6 @@ export interface Overview {
     updatedAt: DateTime;
 }
 
-export interface User {
-    id: string;
-    name: string;
-    password: string;
-    avatar?: Nullable<string>;
-    phone?: Nullable<string>;
-    zalo?: Nullable<string>;
-    file?: Nullable<string>;
-    post: Post[];
-    createdAt: DateTime;
-    updatedAt: DateTime;
-}
-
 export interface Post {
     id?: Nullable<string>;
     title?: Nullable<string>;
@@ -137,6 +130,19 @@ export interface Post {
     listImage: Image;
     attributes: Attribute;
     overviews: Overview;
+}
+
+export interface User {
+    id: string;
+    name: string;
+    password: string;
+    avatar?: Nullable<string>;
+    phone?: Nullable<string>;
+    zalo?: Nullable<string>;
+    file?: Nullable<string>;
+    post: Post[];
+    createdAt: DateTime;
+    updatedAt: DateTime;
 }
 
 export interface PostResponse {
@@ -218,6 +224,12 @@ export interface NewPostResponse {
     pageSize: number;
 }
 
+export interface AreaResponse {
+    err: number;
+    msg: string;
+    response: Area[];
+}
+
 export interface Area {
     id: number;
     order: number;
@@ -225,12 +237,6 @@ export interface Area {
     value: string;
     createdAt: DateTime;
     updatedAt: DateTime;
-}
-
-export interface AreaResponse {
-    err: number;
-    msg: string;
-    response: Area[];
 }
 
 export interface Category {
@@ -283,12 +289,6 @@ export interface ImageResponse {
     err: number;
     msg: string;
     response: Image[];
-}
-
-export interface AttributeResponse {
-    err: number;
-    msg: string;
-    response: Attribute[];
 }
 
 export interface UserResponse {

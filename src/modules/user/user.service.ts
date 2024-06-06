@@ -2,18 +2,18 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import { UserEntity } from './model/user.entity';
-import { InputUpdateProfile } from './args/update_profile.args';
+import { UserEntity } from './user.entity';
+import { InputUpdateProfile } from './update_profile.args';
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(UserEntity)
-    private readonly userRepository: Repository<UserEntity>,
+    private readonly _userRepository: Repository<UserEntity>,
   ) {}
 
   async getAllUser() {
-    const response = await this.userRepository.find({
+    const response = await this._userRepository.find({
       where: { isActive: true },
     });
     return {
@@ -24,7 +24,7 @@ export class UserService {
   }
 
   async getCurrentUser(id: string) {
-    const response = await this.userRepository.findOne({
+    const response = await this._userRepository.findOne({
       where: { id: id },
     });
     return {
@@ -36,7 +36,7 @@ export class UserService {
 
   async updateUser(id: string, input: InputUpdateProfile) {
     try {
-      const response = await this.userRepository.update(id, {
+      const response = await this._userRepository.update(id, {
         name: input.name,
         avatar: input.avatar,
         phone: input.phone,

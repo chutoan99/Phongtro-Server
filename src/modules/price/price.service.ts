@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { PriceEntity } from './model/price.entity';
+import { PriceEntity } from './price.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 
@@ -7,10 +7,10 @@ import { InjectRepository } from '@nestjs/typeorm';
 export class PriceService {
   constructor(
     @InjectRepository(PriceEntity)
-    private readonly priceRepository: Repository<PriceEntity>,
+    private readonly _priceRepository: Repository<PriceEntity>,
   ) {}
   async GetAllPrice() {
-    const response = await this.priceRepository.find({
+    const response = await this._priceRepository.find({
       where: { isActive: true },
     });
     return {

@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common';
-import { InputNewPost } from './args/input_new_post.args';
+import { InputNewPost } from './input_new_post.args';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { PostEntity } from '../post/model/post.entity';
+import { PostEntity } from '../post/post.entity';
 
 @Injectable()
 export class NewPostService {
   constructor(
     @InjectRepository(PostEntity)
-    private readonly postRepository: Repository<PostEntity>,
+    private readonly _postRepository: Repository<PostEntity>,
   ) {}
 
   async findAllNewPost(input: InputNewPost) {
@@ -16,7 +16,7 @@ export class NewPostService {
     const pageNumber = input.pageNumber || 1;
     const limit = pageSize;
     const offset = pageSize * (pageNumber - 1);
-    const [data, totalCount] = await this.postRepository.findAndCount({
+    const [data, totalCount] = await this._postRepository.findAndCount({
       where: { isActive: true },
       take: limit,
       skip: offset,

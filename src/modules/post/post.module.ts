@@ -1,18 +1,18 @@
 import { Module } from '@nestjs/common';
 
 import { PostService } from './post.service';
-import { PostResolver } from './resolver/post.resolver';
+import { PostResolver } from './post.resolver';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { PostEntity } from './model/post.entity';
-import { UserEntity } from '../user/model/user.entity';
-import { ImageEntity } from '../image/model/image.entity';
-import { AttributeEntity } from '../attribute/model/attribute.entity';
-import { OverviewEntity } from '../overview/model/overview.entity';
-import { InputPost } from './args/input_post.args';
-import { InputCreatePost } from './args/input_create_post.args';
-import { ProvinceEntity } from '../province/model/province.entity';
-import { LabelEntity } from '../label/model/label.entity';
-import { InputUpdatePost } from './args/input_update_post.args';
+import { PostEntity } from './post.entity';
+import { UserEntity } from '../user/user.entity';
+import { ImageEntity } from '../image/image.entity';
+import { AttributeEntity } from '../attribute/attribute.entity';
+import { OverviewEntity } from '../overview/overview.entity';
+import { InputPost } from './input_post.args';
+import { InputCreatePost } from './input_create_post.args';
+import { ProvinceEntity } from '../province/province.entity';
+import { LabelEntity } from '../label/label.entity';
+import { InputUpdatePost } from './input_update_post.args';
 import { ProvinceService } from '../province/province.service';
 
 @Module({

@@ -1,16 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ImageEntity } from './model/image.entity';
+import { ImageEntity } from './image.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()
 export class ImageService {
   constructor(
     @InjectRepository(ImageEntity)
-    private readonly imageRepository: Repository<ImageEntity>,
+    private readonly _imageRepository: Repository<ImageEntity>,
   ) {}
   async GetAllImage() {
-    const response = await this.imageRepository.find({
+    const response = await this._imageRepository.find({
       where: { isActive: true },
     });
     return {

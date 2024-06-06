@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { OverviewEntity } from './model/overview.entity';
+import { OverviewEntity } from './overview.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 

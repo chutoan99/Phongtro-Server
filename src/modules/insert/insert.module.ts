@@ -3,16 +3,16 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { InsertController } from './insert.controller';
 import { InsertService } from './insert.service';
 
-import { AreaEntity } from '../area/model/area.entity';
-import { AttributeEntity } from '../attribute/model/attribute.entity';
-import { CategoryEntity } from '../category/model/category.entity';
-import { ImageEntity } from '../image/model/image.entity';
-import { LabelEntity } from '../label/model/label.entity';
-import { OverviewEntity } from '../overview/model/overview.entity';
-import { PostEntity } from '../post/model/post.entity';
-import { PriceEntity } from '../price/model/price.entity';
-import { ProvinceEntity } from '../province/model/province.entity';
-import { UserEntity } from '../user/model/user.entity';
+import { AreaEntity } from '../area/area.entity';
+import { AttributeEntity } from '../attribute/attribute.entity';
+import { CategoryEntity } from '../category/category.entity';
+import { ImageEntity } from '../image/image.entity';
+import { LabelEntity } from '../label/label.entity';
+import { OverviewEntity } from '../overview/overview.entity';
+import { PostEntity } from '../post/post.entity';
+import { PriceEntity } from '../price/price.entity';
+import { ProvinceEntity } from '../province/province.entity';
+import { UserEntity } from '../user/user.entity';
 
 @Module({
   imports: [

@@ -1,15 +1,15 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { PostEntity } from '../post/model/post.entity';
-import { ProvinceEntity } from '../province/model/province.entity';
-import { AttributeEntity } from '../attribute/model/attribute.entity';
-import { LabelEntity } from '../label/model/label.entity';
-import { ImageEntity } from '../image/model/image.entity';
-import { OverviewEntity } from '../overview/model/overview.entity';
-import { UserEntity } from '../user/model/user.entity';
+import { PostEntity } from '../post/post.entity';
+import { ProvinceEntity } from '../province/province.entity';
+import { AttributeEntity } from '../attribute/attribute.entity';
+import { LabelEntity } from '../label/label.entity';
+import { ImageEntity } from '../image/image.entity';
+import { OverviewEntity } from '../overview/overview.entity';
+import { UserEntity } from '../user/user.entity';
 import { NewPostService } from './newpost.service';
-import { NewPostResolver } from './resolver/newpost.resolver';
-import { InputNewPost } from './args/input_new_post.args';
+import { NewPostResolver } from './newpost.resolver';
+import { InputNewPost } from './input_new_post.args';
 
 @Module({
   imports: [

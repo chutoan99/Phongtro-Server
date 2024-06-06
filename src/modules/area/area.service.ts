@@ -2,16 +2,17 @@ import { Injectable } from '@nestjs/common';
 
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { AreaEntity } from './model/area.entity';
+import { AreaEntity } from './area.entity';
 
 @Injectable()
 export class AreaService {
   constructor(
     @InjectRepository(AreaEntity)
-    private readonly areaRepository: Repository<AreaEntity>,
+    private readonly _areaRepository: Repository<AreaEntity>,
   ) {}
+
   async GetAllArea() {
-    const response = await this.areaRepository.find({
+    const response = await this._areaRepository.find({
       where: { isActive: true },
     });
     return {

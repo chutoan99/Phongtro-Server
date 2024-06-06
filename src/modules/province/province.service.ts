@@ -1,16 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { ProvinceEntity } from './model/province.entity';
+import { ProvinceEntity } from './province.entity';
 
 @Injectable()
 export class ProvinceService {
   constructor(
     @InjectRepository(ProvinceEntity)
-    private readonly provinceRepository: Repository<ProvinceEntity>,
+    private readonly _provinceRepository: Repository<ProvinceEntity>,
   ) {}
   async GetAllProvince() {
-    const response = await this.provinceRepository.find({
+    const response = await this._provinceRepository.find({
       where: { isActive: true },
     });
     return {

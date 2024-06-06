@@ -7,16 +7,16 @@ import { ConfigModule } from '@nestjs/config';
 //app
 
 //entity
-import { ProvinceEntity } from './modules/province/model/province.entity';
-import { AttributeEntity } from './modules/attribute/model/attribute.entity';
-import { CategoryEntity } from './modules/category/model/category.entity';
-import { OverviewEntity } from './modules/overview/model/overview.entity';
-import { AreaEntity } from './modules/area/model/area.entity';
-import { ImageEntity } from './modules/image/model/image.entity';
-import { LabelEntity } from './modules/label/model/label.entity';
-import { PostEntity } from './modules/post/model/post.entity';
-import { PriceEntity } from './modules/price/model/price.entity';
-import { UserEntity } from './modules/user/model/user.entity';
+import { ProvinceEntity } from './modules/province/province.entity';
+import { AttributeEntity } from './modules/attribute/attribute.entity';
+import { CategoryEntity } from './modules/category/category.entity';
+import { OverviewEntity } from './modules/overview/overview.entity';
+import { AreaEntity } from './modules/area/area.entity';
+import { ImageEntity } from './modules/image/image.entity';
+import { LabelEntity } from './modules/label/label.entity';
+import { PostEntity } from './modules/post/post.entity';
+import { PriceEntity } from './modules/price/price.entity';
+import { UserEntity } from './modules/user/user.entity';
 
 //module
 import { InsertModule } from './modules/insert/insert.module';

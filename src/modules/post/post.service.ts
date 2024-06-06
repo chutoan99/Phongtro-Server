@@ -1,39 +1,39 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { PostEntity } from './model/post.entity';
+import { PostEntity } from './post.entity';
 import { Repository, Between, FindOperator, ILike } from 'typeorm';
-import { InputPost } from './args/input_post.args';
-import { InputCreatePost } from './args/input_create_post.args';
-import { InputUpdatePost } from './args/input_update_post.args';
+import { InputPost } from './input_post.args';
+import { InputCreatePost } from './input_create_post.args';
+import { InputUpdatePost } from './input_update_post.args';
 import { v4 as uuidv4 } from 'uuid';
 import generaDate from 'src/utils/generateDate';
 import generateCode from 'src/utils/generateCode';
-import { AttributeEntity } from '../attribute/model/attribute.entity';
-import { ImageEntity } from '../image/model/image.entity';
-import { OverviewEntity } from '../overview/model/overview.entity';
-import { ProvinceEntity } from '../province/model/province.entity';
-import { LabelEntity } from '../label/model/label.entity';
+import { AttributeEntity } from '../attribute/attribute.entity';
+import { ImageEntity } from '../image/image.entity';
+import { OverviewEntity } from '../overview/overview.entity';
+import { ProvinceEntity } from '../province/province.entity';
+import { LabelEntity } from '../label/label.entity';
 import * as moment from 'moment';
 @Injectable()
 export class PostService {
   constructor(
     @InjectRepository(ProvinceEntity)
-    private readonly provinceRepository: Repository<ProvinceEntity>,
+    private readonly _provinceRepository: Repository<ProvinceEntity>,
 
     @InjectRepository(AttributeEntity)
-    private readonly attributeRepository: Repository<AttributeEntity>,
+    private readonly _attributeRepository: Repository<AttributeEntity>,
 
     @InjectRepository(LabelEntity)
-    private readonly labelRepository: Repository<LabelEntity>,
+    private readonly _labelRepository: Repository<LabelEntity>,
 
     @InjectRepository(PostEntity)
-    private readonly postRepository: Repository<PostEntity>,
+    private readonly _postRepository: Repository<PostEntity>,
 
     @InjectRepository(ImageEntity)
-    private readonly imageRepository: Repository<ImageEntity>,
+    private readonly _imageRepository: Repository<ImageEntity>,
 
     @InjectRepository(OverviewEntity)
-    private readonly overviewRepository: Repository<OverviewEntity>,
+    private readonly _overviewRepository: Repository<OverviewEntity>,
   ) {}
 
   async GetAllPost(input: InputPost) {
@@ -81,7 +81,7 @@ export class PostService {
 
     const limit = pageSize;
     const offset = pageSize * (pageNumber - 1);
-    const [data, totalCount] = await this.postRepository.findAndCount({
+    const [data, totalCount] = await this._postRepository.findAndCount({
       where: where,
       take: limit,
       skip: offset,
@@ -99,7 +99,7 @@ export class PostService {
   }
 
   async GetPostId(id: string) {
-    const response = await this.postRepository.findOne({
+    const response = await this._postRepository.findOne({
       where: {
         id,
       },
@@ -141,7 +141,7 @@ export class PostService {
       } ${priceUnit}`;
 
       // Create post
-      const post = this.postRepository.create({
+      const post = this._postRepository.create({
         id: uuidv4(),
         attributesId,
         labelCode,
@@ -162,29 +162,29 @@ export class PostService {
         areaNumber,
         isActive: true,
       });
-      await this.postRepository.save(post);
+      await this._postRepository.save(post);
 
       // Create Attribute
-      const attribute = this.attributeRepository.create({
+      const attribute = this._attributeRepository.create({
         id: attributesId,
         price,
         acreage: `${areaNumber} m2`,
         published: moment(new Date()).format('DD/MM/YYYY'),
         hashtag: `#${hashtag}`,
       });
-      await this.attributeRepository.save(attribute);
+      await this._attributeRepository.save(attribute);
 
       // Create Image
-      const image = this.imageRepository.create({
+      const image = this._imageRepository.create({
         id: imagesId,
         image: JSON.stringify(images),
         postImg: images[0],
         total: images.length,
       });
-      await this.imageRepository.save(image);
+      await this._imageRepository.save(image);
 
       // Create Overview
-      const overview = this.overviewRepository.create({
+      const overview = this._overviewRepository.create({
         id: overviewId,
         code: `#${hashtag}`,
         area: label,
@@ -194,10 +194,10 @@ export class PostService {
         created: currentDate.today,
         expired: currentDate.expireDay,
       });
-      await this.overviewRepository.save(overview);
+      await this._overviewRepository.save(overview);
 
       // Create or find Province
-      const provinceRecord = await this.provinceRepository.findOne({
+      const provinceRecord = await this._provinceRepository.findOne({
         where: [
           { value: province.replace('Thành phố', '') },
           { value: province.replace('Tỉnh', '') },
@@ -207,7 +207,7 @@ export class PostService {
       if (provinceRecord) {
         provinceEntity = provinceRecord;
       } else {
-        provinceEntity = this.provinceRepository.create({
+        provinceEntity = this._provinceRepository.create({
           code: province.includes('Thành phố')
             ? generateCode(province.replace('Thành phố', ''))
             : generateCode(province.replace('Tỉnh', '')),
@@ -215,22 +215,22 @@ export class PostService {
             ? province.replace('Thành phố', '')
             : province.replace('Tỉnh', ''),
         });
-        await this.provinceRepository.save(provinceEntity);
+        await this._provinceRepository.save(provinceEntity);
       }
 
       // Create or find Label
-      const labelRecord = await this.labelRepository.findOne({
+      const labelRecord = await this._labelRepository.findOne({
         where: { code: labelCode },
       });
       let labelEntity: LabelEntity;
       if (labelRecord) {
         labelEntity = labelRecord;
       } else {
-        labelEntity = this.labelRepository.create({
+        labelEntity = this._labelRepository.create({
           code: labelCode,
           value: label,
         });
-        await this.labelRepository.save(labelEntity);
+        await this._labelRepository.save(labelEntity);
       }
 
       return {
@@ -245,7 +245,7 @@ export class PostService {
   async UpdatePostId(id: string, input: InputUpdatePost) {
     try {
       const { address, title } = input;
-      const postPromise = this.postRepository.update(id, {
+      const postPromise = this._postRepository.update(id, {
         title,
         address,
       });
@@ -262,7 +262,7 @@ export class PostService {
 
   async DeletePostId(id: string) {
     try {
-      await this.postRepository.update(id, {
+      await this._postRepository.update(id, {
         isActive: false,
       });
       return {

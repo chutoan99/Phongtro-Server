@@ -9,16 +9,16 @@ import { getNumberFromString, getNumberFromStringV2 } from '../../utils/comom';
 
 import generateCode from 'src/utils/generateCode';
 
-import { AreaEntity } from '../area/model/area.entity';
-import { AttributeEntity } from '../attribute/model/attribute.entity';
-import { CategoryEntity } from '../category/model/category.entity';
-import { ImageEntity } from '../image/model/image.entity';
-import { LabelEntity } from '../label/model/label.entity';
-import { OverviewEntity } from '../overview/model/overview.entity';
-import { PostEntity } from '../post/model/post.entity';
-import { PriceEntity } from '../price/model/price.entity';
-import { ProvinceEntity } from '../province/model/province.entity';
-import { UserEntity } from '../user/model/user.entity';
+import { AreaEntity } from '../area/area.entity';
+import { AttributeEntity } from '../attribute/attribute.entity';
+import { CategoryEntity } from '../category/category.entity';
+import { ImageEntity } from '../image/image.entity';
+import { LabelEntity } from '../label/label.entity';
+import { OverviewEntity } from '../overview/overview.entity';
+import { PostEntity } from '../post/post.entity';
+import { PriceEntity } from '../price/price.entity';
+import { ProvinceEntity } from '../province/province.entity';
+import { UserEntity } from '../user/user.entity';
 interface ProvinceCode {
   code: string;
   value: string;
@@ -31,34 +31,34 @@ interface LabelCode {
 export class InsertService {
   constructor(
     @InjectRepository(AreaEntity)
-    private readonly areaRepository: Repository<AreaEntity>,
+    private readonly _areaRepository: Repository<AreaEntity>,
 
     @InjectRepository(CategoryEntity)
-    private readonly categoryRepository: Repository<CategoryEntity>,
+    private readonly _categoryRepository: Repository<CategoryEntity>,
 
     @InjectRepository(ProvinceEntity)
-    private readonly provinceRepository: Repository<ProvinceEntity>,
+    private readonly _provinceRepository: Repository<ProvinceEntity>,
 
     @InjectRepository(PriceEntity)
-    private readonly priceRepository: Repository<PriceEntity>,
+    private readonly _priceRepository: Repository<PriceEntity>,
 
     @InjectRepository(AttributeEntity)
-    private readonly attributeRepository: Repository<AttributeEntity>,
+    private readonly _attributeRepository: Repository<AttributeEntity>,
 
     @InjectRepository(LabelEntity)
-    private readonly labelRepository: Repository<LabelEntity>,
+    private readonly _labelRepository: Repository<LabelEntity>,
 
     @InjectRepository(PostEntity)
-    private readonly postRepository: Repository<PostEntity>,
+    private readonly _postRepository: Repository<PostEntity>,
 
     @InjectRepository(ImageEntity)
-    private readonly imageRepository: Repository<ImageEntity>,
+    private readonly _imageRepository: Repository<ImageEntity>,
 
     @InjectRepository(OverviewEntity)
-    private readonly overviewRepository: Repository<OverviewEntity>,
+    private readonly _overviewRepository: Repository<OverviewEntity>,
 
     @InjectRepository(UserEntity)
-    private readonly userRepository: Repository<UserEntity>,
+    private readonly _userRepository: Repository<UserEntity>,
   ) {}
 
   async insertData() {
@@ -110,7 +110,7 @@ export class InsertService {
             );
             const description = JSON.stringify(item?.mainContent?.content);
 
-            await this.userRepository.save({
+            await this._userRepository.save({
               id: userId,
               name: item?.contact?.content.find((i) => i.name === 'Liên hệ:')
                 ?.content,
@@ -124,7 +124,7 @@ export class InsertService {
               isActive: true,
             });
 
-            await this.attributeRepository.save({
+            await this._attributeRepository.save({
               id: attributesId,
               price: item?.header?.attributes?.price,
               acreage: item?.header?.attributes?.acreage,
@@ -133,7 +133,7 @@ export class InsertService {
               isActive: true,
             });
 
-            await this.imageRepository.save({
+            await this._imageRepository.save({
               id: imagesId,
               image: JSON.stringify(item?.images),
               postImg: item?.images[0],
@@ -141,7 +141,8 @@ export class InsertService {
               isActive: true,
             });
 
-            await this.overviewRepository.save({
+            await this.
+            _overviewRepository.save({
               id: overviewId,
               code: item?.overview?.content.find((i) => i.name === 'Mã tin:')
                 ?.content,
@@ -163,7 +164,7 @@ export class InsertService {
               )?.content,
               isActive: true,
             });
-            await this.postRepository.save({
+            await this._postRepository.save({
               id: postId,
               title: item?.header?.title,
               start: item?.header?.star,
@@ -194,11 +195,11 @@ export class InsertService {
         }),
       );
       for (const item of provinceCodes) {
-        const foundItem = await this.provinceRepository.findOne({
+        const foundItem = await this._provinceRepository.findOne({
           where: { code: item.code },
         });
         if (!foundItem) {
-          await this.provinceRepository.save({
+          await this._provinceRepository.save({
             code: item?.code,
             value: item?.value,
             isActive: true,
@@ -207,12 +208,12 @@ export class InsertService {
       }
 
       for (const item of labelCodes) {
-        const foundItem = await this.labelRepository.findOne({
+        const foundItem = await this._labelRepository.findOne({
           where: { code: item.code },
         });
 
         if (!foundItem) {
-          await this.labelRepository.save({
+          await this._labelRepository.save({
             code: item?.code,
             value: item?.value,
             isActive: true,
@@ -220,7 +221,7 @@ export class InsertService {
         }
       }
 
-      await this.areaRepository.save(
+      await this._areaRepository.save(
         dataArea.map((area, index) => ({
           order: index + 1,
           code: area.code,
@@ -229,7 +230,7 @@ export class InsertService {
         })),
       );
 
-      await this.categoryRepository.save(
+      await this._categoryRepository.save(
         categories.map((item) => ({
           code: item.code,
           value: item.value,
@@ -240,7 +241,7 @@ export class InsertService {
         })),
       );
 
-      await this.priceRepository.save(
+      await this._priceRepository.save(
         dataPrice.map((item, index) => ({
           order: index + 1,
           code: item?.code,

@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { AttributeEntity } from './model/attribute.entity';
+import { AttributeEntity } from './attribute.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 
@@ -7,10 +7,10 @@ import { InjectRepository } from '@nestjs/typeorm';
 export class AttributeService {
   constructor(
     @InjectRepository(AttributeEntity)
-    private readonly attributeRepository: Repository<AttributeEntity>,
+    private readonly _attributeRepository: Repository<AttributeEntity>,
   ) {}
   async getAllAttribute() {
-    const response = await this.attributeRepository.find({
+    const response = await this._attributeRepository.find({
       where: { isActive: true },
     });
     return {

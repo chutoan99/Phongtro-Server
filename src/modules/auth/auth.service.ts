@@ -1,18 +1,18 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { UserEntity } from '../user/model/user.entity';
+import { UserEntity } from '../user/user.entity';
 import { Repository } from 'typeorm';
-import { InputRegister } from './args/input_register.args';
+import { InputRegister } from './input_register.args';
 import { v4 as uuidv4 } from 'uuid';
 import { hashSync, compareSync, genSaltSync } from 'bcrypt';
 import * as jwt from 'jsonwebtoken';
-import { InputLogin } from './args/input_login.args';
+import { InputLogin } from './input_login.args';
 
 @Injectable()
 export class AuthService {
   constructor(
     @InjectRepository(UserEntity)
-    private readonly userRepository: Repository<UserEntity>,
+    private readonly _userRepository: Repository<UserEntity>,
   ) {}
 
   async register(input: InputRegister) {
@@ -27,7 +27,7 @@ export class AuthService {
         };
       }
 
-      const existingUser = await this.userRepository.findOne({
+      const existingUser = await this._userRepository.findOne({
         where: { phone: String(phone) },
       });
 
@@ -39,7 +39,7 @@ export class AuthService {
         };
       }
 
-      const response: UserEntity = await this.userRepository.save({
+      const response: UserEntity = await this._userRepository.save({
         id: uuidv4(),
         name: name,
         phone: phone,
@@ -74,7 +74,7 @@ export class AuthService {
           err: 1,
           msg: 'Missing input !',
         };
-      const response = await this.userRepository.findOne({
+      const response = await this._userRepository.findOne({
         where: { phone: phone },
       });
 

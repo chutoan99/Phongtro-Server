@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { AuthResolver } from './resolver/auth.resolver';
+import { AuthResolver } from './auth.resolver';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserEntity } from '../user/model/user.entity';
-import { InputRegister } from './args/input_register.args';
-import { InputLogin } from './args/input_login.args';
+import { UserEntity } from '../user/user.entity';
+import { InputRegister } from './input_register.args';
+import { InputLogin } from './input_login.args';
 
 @Module({
   imports: [TypeOrmModule.forFeature([UserEntity])],
