@@ -3,23 +3,16 @@ import { PostService } from './post.service'
 import { User } from 'src/modules/user/user.schema'
 import { Image } from 'src/modules/image/image.schema'
 import { Overview } from 'src/modules/overview/overview.schema'
-import { InputPost } from './input_post.args'
+import { InputCreatePost, InputPost, InputUpdatePost } from './post.args'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 import { UserEntity } from 'src/modules/user/user.entity'
 import { AttributeEntity } from 'src/modules/attribute/attribute.entity'
 import { OverviewEntity } from 'src/modules/overview/overview.entity'
-import { InputCreatePost } from './input_create_post.args'
-import { InputUpdatePost } from './input_update_post.args'
 import { Attribute } from 'src/modules/attribute/attribute.schema'
 import { ImageEntity } from 'src/modules/image/image.entity'
-import { Post } from './post.schema'
+import { Post, PostIdSchema, PostSchema, UpdatePostSchema, CreatePostSchema, DeletePostSchema } from './post.schema'
 import { PostEntity } from './post.entity'
-import { PostResponse } from './postResponse.schema'
-import { PostIdResponse } from './postIdResponse.schema'
-import { CreatePostResponse } from './createPostResponse.schema'
-import { UpdatePostResponse } from './updatePostResponse.schema'
-import { DeletePostResponse } from './deletePostResponse.schema'
 
 @Resolver(() => Post) // Specify the object type as Post
 export class PostResolver {
@@ -41,25 +34,25 @@ export class PostResolver {
 		private readonly _overviewRepository: Repository<OverviewEntity>
 	) {}
 
-	@Query(() => PostResponse)
+	@Query(() => PostSchema)
 	async post(@Args('input', { type: () => InputPost }) input: InputPost) {
 		const response = await this._postService.GetAllPost(input)
 		return response
 	}
 
-	@Query(() => PostIdResponse)
+	@Query(() => PostIdSchema)
 	async postId(@Args('postId', { type: () => ID }) id: string) {
 		const response = await this._postService.GetPostId(id)
 		return response
 	}
 
-	@Mutation(() => CreatePostResponse)
+	@Mutation(() => CreatePostSchema)
 	async createPost(@Args('input', { type: () => InputCreatePost }) input: InputCreatePost) {
 		const response = this._postService.CreatePost(input)
 		return response
 	}
 
-	@Mutation(() => UpdatePostResponse)
+	@Mutation(() => UpdatePostSchema)
 	async updatePost(
 		@Args('postId', { type: () => ID }) id: string,
 		@Args('input', { type: () => InputUpdatePost }) input: InputUpdatePost
@@ -68,7 +61,7 @@ export class PostResolver {
 		return response
 	}
 
-	@Mutation(() => DeletePostResponse)
+	@Mutation(() => DeletePostSchema)
 	async deletePost(@Args('postId', { type: () => ID }) id: string) {
 		const response = this._postService.DeletePostId(id)
 		return response

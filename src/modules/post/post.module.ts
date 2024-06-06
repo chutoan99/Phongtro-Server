@@ -8,11 +8,9 @@ import { UserEntity } from '../user/user.entity'
 import { ImageEntity } from '../image/image.entity'
 import { AttributeEntity } from '../attribute/attribute.entity'
 import { OverviewEntity } from '../overview/overview.entity'
-import { InputPost } from './input_post.args'
-import { InputCreatePost } from './input_create_post.args'
+import { InputCreatePost, InputPost, InputUpdatePost } from './post.args'
 import { ProvinceEntity } from '../province/province.entity'
 import { LabelEntity } from '../label/label.entity'
-import { InputUpdatePost } from './input_update_post.args'
 import { ProvinceService } from '../province/province.service'
 
 @Module({

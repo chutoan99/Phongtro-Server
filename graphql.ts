@@ -229,7 +229,13 @@ export interface Post {
     overviews: Overview;
 }
 
-export interface PostResponse {
+export interface PostIdSchema {
+    err: number;
+    msg: string;
+    response: Post;
+}
+
+export interface PostSchema {
     err: number;
     msg: string;
     totalPage: number;
@@ -239,24 +245,18 @@ export interface PostResponse {
     pageSize: number;
 }
 
-export interface PostIdResponse {
+export interface UpdatePostSchema {
     err: number;
     msg: string;
     response: Post;
 }
 
-export interface CreatePostResponse {
+export interface CreatePostSchema {
     err: number;
     msg: string;
 }
 
-export interface UpdatePostResponse {
-    err: number;
-    msg: string;
-    response: Post;
-}
-
-export interface DeletePostResponse {
+export interface DeletePostSchema {
     err: number;
     msg: string;
 }
@@ -317,16 +317,16 @@ export interface IQuery {
     attribute(): AttributeSchema | Promise<AttributeSchema>;
     user(): UserSchema | Promise<UserSchema>;
     userId(userId: string): UserIdSchema | Promise<UserIdSchema>;
-    post(input: InputPost): PostResponse | Promise<PostResponse>;
-    postId(postId: string): PostIdResponse | Promise<PostIdResponse>;
+    post(input: InputPost): PostSchema | Promise<PostSchema>;
+    postId(postId: string): PostIdSchema | Promise<PostIdSchema>;
     newPost(input: InputNewPost): NewPostSchema | Promise<NewPostSchema>;
 }
 
 export interface IMutation {
     updateProfile(userId: string, input: InputUpdateProfile): UpdateUserSchema | Promise<UpdateUserSchema>;
-    createPost(input: InputCreatePost): CreatePostResponse | Promise<CreatePostResponse>;
-    updatePost(postId: string, input: InputUpdatePost): UpdatePostResponse | Promise<UpdatePostResponse>;
-    deletePost(postId: string): DeletePostResponse | Promise<DeletePostResponse>;
+    createPost(input: InputCreatePost): CreatePostSchema | Promise<CreatePostSchema>;
+    updatePost(postId: string, input: InputUpdatePost): UpdatePostSchema | Promise<UpdatePostSchema>;
+    deletePost(postId: string): DeletePostSchema | Promise<DeletePostSchema>;
     login(input: InputLogin): LoginSchema | Promise<LoginSchema>;
     register(input: InputRegister): RegisterSchema | Promise<RegisterSchema>;
 }
