@@ -1,17 +1,4 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql'
-
-@ObjectType()
-export class AreaResponse {
-	@Field(() => Int)
-	err: number
-
-	@Field()
-	msg: string
-
-	@Field(() => [Area])
-	response: Area[]
-}
-
 @ObjectType()
 export class Area {
 	@Field(() => Int)
@@ -31,4 +18,16 @@ export class Area {
 
 	@Field(() => Date)
 	updatedAt: Date
+}
+
+@ObjectType()
+export class AreaSchema {
+	@Field(() => Int)
+	err: number
+
+	@Field()
+	msg: string
+
+	@Field(() => [Area])
+	response: Area[]
 }

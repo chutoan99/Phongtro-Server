@@ -1,13 +1,13 @@
 import { Query, Resolver } from '@nestjs/graphql'
 
 import { ProvinceService } from './province.service'
-import { ProvinceResponse } from './provinceResponse.schema'
+import { ProvinceSchema } from './province.schema'
 
 @Resolver()
 export class ProvinceResolver {
 	constructor(private readonly _provinceService: ProvinceService) {}
 
-	@Query(() => ProvinceResponse)
+	@Query(() => ProvinceSchema)
 	province() {
 		const response = this._provinceService.GetAllProvince()
 		return response

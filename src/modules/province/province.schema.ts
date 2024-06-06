@@ -1,4 +1,4 @@
-import { ObjectType, Field, ID } from '@nestjs/graphql'
+import { ObjectType, Field, ID, Int } from '@nestjs/graphql'
 
 @ObjectType()
 export class Province {
@@ -17,3 +17,16 @@ export class Province {
 	@Field(() => Date)
 	updatedAt: Date
 }
+
+@ObjectType()
+export class ProvinceSchema {
+	@Field(() => Int)
+	err: number
+
+	@Field()
+	msg: string
+
+	@Field(() => [Province])
+	response: Province[]
+}
+

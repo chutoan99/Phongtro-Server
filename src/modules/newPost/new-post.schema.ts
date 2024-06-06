@@ -1,9 +1,8 @@
-import { ObjectType, Field, ID, Float } from '@nestjs/graphql'
+import { ObjectType, Field, ID, Float, Int } from '@nestjs/graphql'
 import { Attribute } from 'src/modules/attribute/attribute.schema'
 import { Image } from 'src/modules/image/image.schema'
 import { Overview } from 'src/modules/overview/overview.schema'
 import { User } from 'src/modules/user/user.schema'
-
 @ObjectType()
 export class NewPost {
 	@Field(() => ID, { nullable: true })
@@ -72,3 +71,25 @@ export class NewPost {
 	@Field(() => Overview)
 	overviews: Overview
 }
+@ObjectType()
+export class NewPostSchema {
+	@Field(() => Int)
+	err: number
+
+	@Field()
+	msg: string
+
+	@Field(() => [NewPost])
+	response: NewPost[]
+
+	@Field(() => Int)
+	total: number
+
+	@Field(() => Int)
+	pageNumber: number
+
+	@Field(() => Int)
+	pageSize: number
+}
+
+

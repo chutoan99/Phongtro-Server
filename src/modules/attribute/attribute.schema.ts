@@ -1,17 +1,4 @@
 import { ObjectType, Field, ID, Int } from '@nestjs/graphql'
-
-@ObjectType()
-export class AttributeResponse {
-	@Field(() => Int)
-	err: number
-
-	@Field()
-	msg: string
-
-	@Field(() => [Attribute])
-	response: Attribute[]
-}
-
 @ObjectType()
 export class Attribute {
 	@Field(() => ID)
@@ -34,4 +21,15 @@ export class Attribute {
 
 	@Field(() => Date)
 	updatedAt: Date
+}
+@ObjectType()
+export class AttributeSchema {
+	@Field(() => Int)
+	err: number
+
+	@Field()
+	msg: string
+
+	@Field(() => [Attribute])
+	response: Attribute[]
 }

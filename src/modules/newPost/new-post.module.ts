@@ -9,7 +9,7 @@ import { OverviewEntity } from '../overview/overview.entity'
 import { UserEntity } from '../user/user.entity'
 import { NewPostService } from './new-post.service'
 import { NewPostResolver } from './new-post.resolver'
-import { InputNewPost } from './input_new_post.args'
+import { InputNewPost } from './new_post.args'
 
 @Module({
 	imports: [

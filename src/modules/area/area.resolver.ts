@@ -1,12 +1,12 @@
 import { Query, Resolver } from '@nestjs/graphql'
 import { AreaService } from './area.service'
-import { AreaResponse } from './area.schema'
+import { AreaSchema } from './area.schema'
 
 @Resolver()
 export class AreaResolver {
 	constructor(private readonly _areaService: AreaService) {}
 
-	@Query(() => AreaResponse)
+	@Query(() => AreaSchema)
 	area() {
 		const response = this._areaService.GetAllArea()
 		return response

@@ -1,4 +1,4 @@
-import { ObjectType, Field, ID } from '@nestjs/graphql'
+import { ObjectType, Field, ID, Int } from '@nestjs/graphql'
 
 @ObjectType()
 export class Category {
@@ -26,3 +26,16 @@ export class Category {
 	@Field(() => Date)
 	updatedAt: Date
 }
+@ObjectType()
+export class CategorySchema {
+	@Field(() => Int)
+	err: number
+
+	@Field()
+	msg: string
+
+	@Field(() => [Category])
+	response: Category[]
+}
+
+

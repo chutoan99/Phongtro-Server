@@ -69,12 +69,6 @@ export interface InputRegister {
     password: string;
 }
 
-export interface AreaResponse {
-    err: number;
-    msg: string;
-    response: Area[];
-}
-
 export interface Area {
     id: number;
     order: number;
@@ -82,6 +76,12 @@ export interface Area {
     value: string;
     createdAt: DateTime;
     updatedAt: DateTime;
+}
+
+export interface AreaSchema {
+    err: number;
+    msg: string;
+    response: Area[];
 }
 
 export interface Category {
@@ -95,7 +95,7 @@ export interface Category {
     updatedAt: DateTime;
 }
 
-export interface CategoryResponse {
+export interface CategorySchema {
     err: number;
     msg: string;
     response: Category[];
@@ -110,7 +110,7 @@ export interface Price {
     updatedAt: DateTime;
 }
 
-export interface PriceResponse {
+export interface PriceSchema {
     err: number;
     msg: string;
     response: Price[];
@@ -124,7 +124,7 @@ export interface Province {
     updatedAt: DateTime;
 }
 
-export interface ProvinceResponse {
+export interface ProvinceSchema {
     err: number;
     msg: string;
     response: Province[];
@@ -139,16 +139,10 @@ export interface Image {
     updatedAt: DateTime;
 }
 
-export interface ImageResponse {
+export interface ImageSchema {
     err: number;
     msg: string;
     response: Image[];
-}
-
-export interface AttributeResponse {
-    err: number;
-    msg: string;
-    response: Attribute[];
 }
 
 export interface Attribute {
@@ -159,6 +153,12 @@ export interface Attribute {
     hashtag: string;
     createdAt: DateTime;
     updatedAt: DateTime;
+}
+
+export interface AttributeSchema {
+    err: number;
+    msg: string;
+    response: Attribute[];
 }
 
 export interface Overview {
@@ -286,7 +286,7 @@ export interface NewPost {
     overviews: Overview;
 }
 
-export interface NewPostResponse {
+export interface NewPostSchema {
     err: number;
     msg: string;
     response: NewPost[];
@@ -295,31 +295,31 @@ export interface NewPostResponse {
     pageSize: number;
 }
 
-export interface LoginResponse {
+export interface LoginSchema {
     err: number;
     msg: string;
     token?: Nullable<string>;
     response: User;
 }
 
-export interface RegisterResponse {
+export interface RegisterSchema {
     err: number;
     msg: string;
     token?: Nullable<string>;
 }
 
 export interface IQuery {
-    area(): AreaResponse | Promise<AreaResponse>;
-    category(): CategoryResponse | Promise<CategoryResponse>;
-    price(): PriceResponse | Promise<PriceResponse>;
-    province(): ProvinceResponse | Promise<ProvinceResponse>;
-    image(): ImageResponse | Promise<ImageResponse>;
-    attribute(): AttributeResponse | Promise<AttributeResponse>;
+    area(): AreaSchema | Promise<AreaSchema>;
+    category(): CategorySchema | Promise<CategorySchema>;
+    price(): PriceSchema | Promise<PriceSchema>;
+    province(): ProvinceSchema | Promise<ProvinceSchema>;
+    image(): ImageSchema | Promise<ImageSchema>;
+    attribute(): AttributeSchema | Promise<AttributeSchema>;
     user(): UserResponse | Promise<UserResponse>;
     userId(userId: string): UserIdResponse | Promise<UserIdResponse>;
     post(input: InputPost): PostResponse | Promise<PostResponse>;
     postId(postId: string): PostIdResponse | Promise<PostIdResponse>;
-    newPost(input: InputNewPost): NewPostResponse | Promise<NewPostResponse>;
+    newPost(input: InputNewPost): NewPostSchema | Promise<NewPostSchema>;
 }
 
 export interface IMutation {
@@ -327,8 +327,8 @@ export interface IMutation {
     createPost(input: InputCreatePost): CreatePostResponse | Promise<CreatePostResponse>;
     updatePost(postId: string, input: InputUpdatePost): UpdatePostResponse | Promise<UpdatePostResponse>;
     deletePost(postId: string): DeletePostResponse | Promise<DeletePostResponse>;
-    login(input: InputLogin): LoginResponse | Promise<LoginResponse>;
-    register(input: InputRegister): RegisterResponse | Promise<RegisterResponse>;
+    login(input: InputLogin): LoginSchema | Promise<LoginSchema>;
+    register(input: InputRegister): RegisterSchema | Promise<RegisterSchema>;
 }
 
 export type DateTime = any;

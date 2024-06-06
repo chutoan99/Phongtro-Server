@@ -1,5 +1,4 @@
 import { ObjectType, Field, Int, ID } from '@nestjs/graphql'
-
 @ObjectType()
 export class Price {
 	@Field(() => ID)
@@ -20,3 +19,16 @@ export class Price {
 	@Field(() => Date)
 	updatedAt: Date
 }
+@ObjectType()
+export class PriceSchema {
+	@Field(() => Int)
+	err: number
+
+	@Field()
+	msg: string
+
+	@Field(() => [Price])
+	response: Price[]
+}
+
+

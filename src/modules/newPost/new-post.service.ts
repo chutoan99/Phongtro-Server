@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common'
-import { InputNewPost } from './input_new_post.args'
+import { InputNewPost } from './new_post.args'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 import { PostEntity } from '../post/post.entity'

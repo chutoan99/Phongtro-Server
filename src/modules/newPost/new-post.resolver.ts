@@ -9,29 +9,24 @@ import { User } from 'src/modules/user/user.schema'
 import { Overview } from 'src/modules/overview/overview.schema'
 import { Attribute } from 'src/modules/attribute/attribute.schema'
 import { ImageEntity } from 'src/modules/image/image.entity'
-import { NewPost } from './new-post.schema'
-import { NewPostResponse } from './new-postResponse.schema'
-import { InputNewPost } from './input_new_post.args'
+import { InputNewPost } from './new_post.args'
+import { NewPost, NewPostSchema } from './new-post.schema'
 
 @Resolver(() => NewPost)
 export class NewPostResolver {
 	constructor(
 		private readonly _newPostService: NewPostService,
-
 		@InjectRepository(UserEntity)
 		private readonly _userRepository: Repository<UserEntity>,
-
 		@InjectRepository(ImageEntity)
 		private readonly _imageRepository: Repository<ImageEntity>,
-
 		@InjectRepository(AttributeEntity)
 		private readonly _attributeRepository: Repository<AttributeEntity>,
-
 		@InjectRepository(OverviewEntity)
 		private readonly _overviewRepository: Repository<OverviewEntity>
 	) {}
 
-	@Query(() => NewPostResponse)
+	@Query(() => NewPostSchema)
 	async newPost(@Args('input', { type: () => InputNewPost }) input: InputNewPost) {
 		const response = await this._newPostService.findAllNewPost(input)
 		return response

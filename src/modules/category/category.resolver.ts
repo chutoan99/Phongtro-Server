@@ -1,13 +1,13 @@
 import { Query, Resolver } from '@nestjs/graphql'
 
 import { CategoryService } from './category.service'
-import { CategoryResponse } from './categoryResponse.schema'
+import { CategorySchema } from './category.schema'
 
 @Resolver()
 export class CategoryResolver {
 	constructor(private readonly _categoryService: CategoryService) {}
 
-	@Query(() => CategoryResponse)
+	@Query(() => CategorySchema)
 	category() {
 		const response = this._categoryService.GetAllCategory()
 		return response

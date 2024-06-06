@@ -1,5 +1,4 @@
 import { ObjectType, Field, Int, ID } from '@nestjs/graphql'
-
 @ObjectType()
 export class Image {
 	@Field(() => ID)
@@ -20,3 +19,17 @@ export class Image {
 	@Field(() => Date)
 	updatedAt: Date
 }
+
+@ObjectType()
+export class ImageSchema {
+	@Field(() => Int)
+	err: number
+
+	@Field()
+	msg: string
+
+	@Field(() => [Image])
+	response: Image[]
+}
+
+

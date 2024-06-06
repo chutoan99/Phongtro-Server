@@ -2,11 +2,10 @@ import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { UserEntity } from '../user/user.entity'
 import { Repository } from 'typeorm'
-import { InputRegister } from './input_register.args'
 import { v4 as uuidv4 } from 'uuid'
 import { hashSync, compareSync, genSaltSync } from 'bcrypt'
 import * as jwt from 'jsonwebtoken'
-import { InputLogin } from './input_login.args'
+import { InputLogin, InputRegister } from './auth.args'
 
 @Injectable()
 export class AuthService {
